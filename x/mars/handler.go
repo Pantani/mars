@@ -3,8 +3,8 @@ package mars
 import (
 	"fmt"
 
-	"github.com/Pantani/mars/x/mars/keeper"
-	"github.com/Pantani/mars/x/mars/types"
+	"github.com/cosmonaut/mars/x/mars/keeper"
+	"github.com/cosmonaut/mars/x/mars/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
 )

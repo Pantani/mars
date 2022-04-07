@@ -3,8 +3,8 @@ package keeper_test
 import (
 	"testing"
 
-	testkeeper "github.com/Pantani/mars/testutil/keeper"
-	"github.com/Pantani/mars/x/mars/types"
+	testkeeper "github.com/cosmonaut/mars/testutil/keeper"
+	"github.com/cosmonaut/mars/x/mars/types"
 	"github.com/stretchr/testify/require"
 )
 

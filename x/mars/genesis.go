@@ -1,8 +1,8 @@
 package mars
 
 import (
-	"github.com/Pantani/mars/x/mars/keeper"
-	"github.com/Pantani/mars/x/mars/types"
+	"github.com/cosmonaut/mars/x/mars/keeper"
+	"github.com/cosmonaut/mars/x/mars/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 )
 

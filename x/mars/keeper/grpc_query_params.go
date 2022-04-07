@@ -3,7 +3,7 @@ package keeper
 import (
 	"context"
 
-	"github.com/Pantani/mars/x/mars/types"
+	"github.com/cosmonaut/mars/x/mars/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"

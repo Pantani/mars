@@ -3,8 +3,8 @@ package keeper
 import (
 	"testing"
 
-	"github.com/Pantani/mars/x/mars/keeper"
-	"github.com/Pantani/mars/x/mars/types"
+	"github.com/cosmonaut/mars/x/mars/keeper"
+	"github.com/cosmonaut/mars/x/mars/types"
 	"github.com/cosmos/cosmos-sdk/codec"
 	codectypes "github.com/cosmos/cosmos-sdk/codec/types"
 	"github.com/cosmos/cosmos-sdk/store"

@@ -1,7 +1,7 @@
 package keeper
 
 import (
-	"github.com/Pantani/mars/x/mars/types"
+	"github.com/cosmonaut/mars/x/mars/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 )
 

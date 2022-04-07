@@ -87,17 +87,17 @@ import (
 	tmos "github.com/tendermint/tendermint/libs/os"
 	dbm "github.com/tendermint/tm-db"
 
-	monitoringpmodule "github.com/tendermint/spn/x/monitoringp"
-	monitoringpmodulekeeper "github.com/tendermint/spn/x/monitoringp/keeper"
-	monitoringpmoduletypes "github.com/tendermint/spn/x/monitoringp/types"
+	monitoringp "github.com/tendermint/spn/x/monitoringp"
+	monitoringpkeeper "github.com/tendermint/spn/x/monitoringp/keeper"
+	monitoringptypes "github.com/tendermint/spn/x/monitoringp/types"
 	"github.com/tendermint/starport/starport/pkg/cosmoscmd"
 	"github.com/tendermint/starport/starport/pkg/openapiconsole"
 
-	"github.com/Pantani/mars/docs"
+	"github.com/cosmonaut/mars/docs"
 
-	marsmodule "github.com/Pantani/mars/x/mars"
-	marsmodulekeeper "github.com/Pantani/mars/x/mars/keeper"
-	marsmoduletypes "github.com/Pantani/mars/x/mars/types"
+	marsmodule "github.com/cosmonaut/mars/x/mars"
+	marsmodulekeeper "github.com/cosmonaut/mars/x/mars/keeper"
+	marsmoduletypes "github.com/cosmonaut/mars/x/mars/types"
 	// this line is used by starport scaffolding # stargate/app/moduleImport
 )
 
@@ -150,7 +150,7 @@ var (
 		evidence.AppModuleBasic{},
 		transfer.AppModuleBasic{},
 		vesting.AppModuleBasic{},
-		monitoringpmodule.AppModuleBasic{},
+		monitoringp.AppModuleBasic{},
 		marsmodule.AppModuleBasic{},
 		// this line is used by starport scaffolding # stargate/app/moduleBasic
 	)
@@ -216,7 +216,7 @@ type App struct {
 	EvidenceKeeper   evidencekeeper.Keeper
 	TransferKeeper   ibctransferkeeper.Keeper
 	FeeGrantKeeper   feegrantkeeper.Keeper
-	MonitoringKeeper monitoringpmodulekeeper.Keeper
+	MonitoringKeeper monitoringpkeeper.Keeper
 
 	// make scoped keepers public for test purposes
 	ScopedIBCKeeper        capabilitykeeper.ScopedKeeper
@@ -259,7 +259,7 @@ func New(
 		authtypes.StoreKey, banktypes.StoreKey, stakingtypes.StoreKey,
 		minttypes.StoreKey, distrtypes.StoreKey, slashingtypes.StoreKey,
 		govtypes.StoreKey, paramstypes.StoreKey, ibchost.StoreKey, upgradetypes.StoreKey, feegrant.StoreKey,
-		evidencetypes.StoreKey, ibctransfertypes.StoreKey, capabilitytypes.StoreKey, monitoringpmoduletypes.StoreKey,
+		evidencetypes.StoreKey, ibctransfertypes.StoreKey, capabilitytypes.StoreKey, monitoringptypes.StoreKey,
 		marsmoduletypes.StoreKey,
 		// this line is used by starport scaffolding # stargate/app/storeKey
 	)
@@ -359,12 +359,12 @@ func New(
 		&stakingKeeper, govRouter,
 	)
 
-	scopedMonitoringKeeper := app.CapabilityKeeper.ScopeToModule(monitoringpmoduletypes.ModuleName)
-	app.MonitoringKeeper = *monitoringpmodulekeeper.NewKeeper(
+	scopedMonitoringKeeper := app.CapabilityKeeper.ScopeToModule(monitoringptypes.ModuleName)
+	app.MonitoringKeeper = *monitoringpkeeper.NewKeeper(
 		appCodec,
-		keys[monitoringpmoduletypes.StoreKey],
-		keys[monitoringpmoduletypes.MemStoreKey],
-		app.GetSubspace(monitoringpmoduletypes.ModuleName),
+		keys[monitoringptypes.StoreKey],
+		keys[monitoringptypes.MemStoreKey],
+		app.GetSubspace(monitoringptypes.ModuleName),
 		app.StakingKeeper,
 		app.IBCKeeper.ClientKeeper,
 		app.IBCKeeper.ConnectionKeeper,
@@ -372,7 +372,7 @@ func New(
 		&app.IBCKeeper.PortKeeper,
 		scopedMonitoringKeeper,
 	)
-	monitoringModule := monitoringpmodule.NewAppModule(appCodec, app.MonitoringKeeper)
+	monitoringModule := monitoringp.NewAppModule(appCodec, app.MonitoringKeeper)
 
 	app.MarsKeeper = *marsmodulekeeper.NewKeeper(
 		appCodec,
@@ -387,7 +387,7 @@ func New(
 	// Create static IBC router, add transfer route, then set and seal it
 	ibcRouter := ibcporttypes.NewRouter()
 	ibcRouter.AddRoute(ibctransfertypes.ModuleName, transferModule)
-	ibcRouter.AddRoute(monitoringpmoduletypes.ModuleName, monitoringModule)
+	ibcRouter.AddRoute(monitoringptypes.ModuleName, monitoringModule)
 	// this line is used by starport scaffolding # ibc/app/router
 	app.IBCKeeper.SetRouter(ibcRouter)
 
@@ -431,9 +431,16 @@ func New(
 	// CanWithdrawInvariant invariant.
 	// NOTE: staking module is required if HistoricalEntries param > 0
 	app.mm.SetOrderBeginBlockers(
-		upgradetypes.ModuleName, capabilitytypes.ModuleName, minttypes.ModuleName, distrtypes.ModuleName,
-		slashingtypes.ModuleName, evidencetypes.ModuleName, stakingtypes.ModuleName, ibchost.ModuleName,
-		feegrant.ModuleName, monitoringpmoduletypes.ModuleName,
+		upgradetypes.ModuleName,
+		capabilitytypes.ModuleName,
+		minttypes.ModuleName,
+		distrtypes.ModuleName,
+		slashingtypes.ModuleName,
+		evidencetypes.ModuleName,
+		stakingtypes.ModuleName,
+		ibchost.ModuleName,
+		feegrant.ModuleName,
+		monitoringptypes.ModuleName,
 	)
 
 	app.mm.SetOrderEndBlockers(crisistypes.ModuleName, govtypes.ModuleName, stakingtypes.ModuleName)
@@ -457,7 +464,7 @@ func New(
 		genutiltypes.ModuleName,
 		evidencetypes.ModuleName,
 		ibctransfertypes.ModuleName,
-		monitoringpmoduletypes.ModuleName,
+		monitoringptypes.ModuleName,
 		marsmoduletypes.ModuleName,
 		// this line is used by starport scaffolding # stargate/app/initGenesis
 	)
@@ -671,7 +678,7 @@ func initParamsKeeper(appCodec codec.BinaryCodec, legacyAmino *codec.LegacyAmino
 	paramsKeeper.Subspace(crisistypes.ModuleName)
 	paramsKeeper.Subspace(ibctransfertypes.ModuleName)
 	paramsKeeper.Subspace(ibchost.ModuleName)
-	paramsKeeper.Subspace(monitoringpmoduletypes.ModuleName)
+	paramsKeeper.Subspace(monitoringptypes.ModuleName)
 	paramsKeeper.Subspace(marsmoduletypes.ModuleName)
 	// this line is used by starport scaffolding # stargate/app/paramSubspace
 

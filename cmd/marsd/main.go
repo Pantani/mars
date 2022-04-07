@@ -3,7 +3,7 @@ package main
 import (
 	"os"
 
-	"github.com/Pantani/mars/app"
+	"github.com/cosmonaut/mars/app"
 	svrcmd "github.com/cosmos/cosmos-sdk/server/cmd"
 	"github.com/tendermint/starport/starport/pkg/cosmoscmd"
 )

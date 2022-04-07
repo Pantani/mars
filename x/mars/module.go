@@ -11,9 +11,9 @@ import (
 
 	abci "github.com/tendermint/tendermint/abci/types"
 
-	"github.com/Pantani/mars/x/mars/client/cli"
-	"github.com/Pantani/mars/x/mars/keeper"
-	"github.com/Pantani/mars/x/mars/types"
+	"github.com/cosmonaut/mars/x/mars/client/cli"
+	"github.com/cosmonaut/mars/x/mars/keeper"
+	"github.com/cosmonaut/mars/x/mars/types"
 	"github.com/cosmos/cosmos-sdk/client"
 	"github.com/cosmos/cosmos-sdk/codec"
 	cdctypes "github.com/cosmos/cosmos-sdk/codec/types"

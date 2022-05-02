@@ -1,7 +1,7 @@
 package keeper
 
 import (
-	"github.com/cosmonaut/mars/x/mars/types"
+	"github.com/Pantani/mars/x/mars/types"
 )
 
 type msgServer struct {

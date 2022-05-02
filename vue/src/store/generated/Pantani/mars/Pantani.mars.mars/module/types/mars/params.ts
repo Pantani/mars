@@ -1,7 +1,7 @@
 /* eslint-disable */
 import { Writer, Reader } from "protobufjs/minimal";
 
-export const protobufPackage = "cosmonaut.mars.mars";
+export const protobufPackage = "Pantani.mars.mars";
 
 /** Params defines the parameters for the module. */
 export interface Params {}

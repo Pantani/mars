@@ -2,7 +2,7 @@
 import { Reader, Writer } from "protobufjs/minimal";
 import { Params } from "../mars/params";
 
-export const protobufPackage = "cosmonaut.mars.mars";
+export const protobufPackage = "Pantani.mars.mars";
 
 /** QueryParamsRequest is request type for the Query/Params RPC method. */
 export interface QueryParamsRequest {}
@@ -123,11 +123,7 @@ export class QueryClientImpl implements Query {
   }
   Params(request: QueryParamsRequest): Promise<QueryParamsResponse> {
     const data = QueryParamsRequest.encode(request).finish();
-    const promise = this.rpc.request(
-      "cosmonaut.mars.mars.Query",
-      "Params",
-      data
-    );
+    const promise = this.rpc.request("Pantani.mars.mars.Query", "Params", data);
     return promise.then((data) => QueryParamsResponse.decode(new Reader(data)));
   }
 }

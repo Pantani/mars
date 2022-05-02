@@ -2,7 +2,7 @@
 import { Params } from "../mars/params";
 import { Writer, Reader } from "protobufjs/minimal";
 
-export const protobufPackage = "cosmonaut.mars.mars";
+export const protobufPackage = "Pantani.mars.mars";
 
 /** GenesisState defines the mars module's genesis state. */
 export interface GenesisState {

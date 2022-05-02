@@ -3,10 +3,10 @@ package mars_test
 import (
 	"testing"
 
-	keepertest "github.com/cosmonaut/mars/testutil/keeper"
-	"github.com/cosmonaut/mars/testutil/nullify"
-	"github.com/cosmonaut/mars/x/mars"
-	"github.com/cosmonaut/mars/x/mars/types"
+	keepertest "github.com/Pantani/mars/testutil/keeper"
+	"github.com/Pantani/mars/testutil/nullify"
+	"github.com/Pantani/mars/x/mars"
+	"github.com/Pantani/mars/x/mars/types"
 	"github.com/stretchr/testify/require"
 )
 

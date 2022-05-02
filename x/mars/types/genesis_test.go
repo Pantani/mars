@@ -3,7 +3,7 @@ package types_test
 import (
 	"testing"
 
-	"github.com/cosmonaut/mars/x/mars/types"
+	"github.com/Pantani/mars/x/mars/types"
 	"github.com/stretchr/testify/require"
 )
 

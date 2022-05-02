@@ -1,8 +1,8 @@
 accounts:
   - name: alice
-    coins: [ "20000token", "200000000stake" ]
+    coins: ["20000token", "200000000stake"]
   - name: bob
-    coins: [ "10000token", "100000000stake" ]
+    coins: ["10000token", "100000000stake"]
 validator:
   name: alice
   staked: "100000000stake"
@@ -13,12 +13,4 @@ client:
     path: "vue/src/store"
 faucet:
   name: bob
-  coins: [ "5token", "100000stake" ]
-  port: 4501
-host:
-  rpc: ":26659"
-  p2p: ":26658"
-  prof: ":6061"
-  grpc: ":9190"
-  grpc-web: ":9191"
-  api: ":1318"
+  coins: ["5token", "100000stake"]

@@ -235,11 +235,11 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
    * @tags Query
    * @name QueryParams
    * @summary Parameters queries the parameters of the module.
-   * @request GET:/cosmonaut/mars/mars/params
+   * @request GET:/Pantani/mars/mars/params
    */
   queryParams = (params: RequestParams = {}) =>
     this.request<MarsQueryParamsResponse, RpcStatus>({
-      path: `/cosmonaut/mars/mars/params`,
+      path: `/Pantani/mars/mars/params`,
       method: "GET",
       format: "json",
       ...params,

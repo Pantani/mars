@@ -1,5 +1,5 @@
 /* eslint-disable */
-export const protobufPackage = "cosmonaut.mars.mars";
+export const protobufPackage = "Pantani.mars.mars";
 
 /** Msg defines the Msg service. */
 export interface Msg {}

@@ -88,17 +88,18 @@ import (
 	tmos "github.com/tendermint/tendermint/libs/os"
 	dbm "github.com/tendermint/tm-db"
 
+	"github.com/ignite-hq/cli/ignite/pkg/cosmoscmd"
+	"github.com/ignite-hq/cli/ignite/pkg/openapiconsole"
+
 	monitoringp "github.com/tendermint/spn/x/monitoringp"
 	monitoringpkeeper "github.com/tendermint/spn/x/monitoringp/keeper"
 	monitoringptypes "github.com/tendermint/spn/x/monitoringp/types"
-	"github.com/tendermint/starport/starport/pkg/cosmoscmd"
-	"github.com/tendermint/starport/starport/pkg/openapiconsole"
 
-	"github.com/cosmonaut/mars/docs"
+	"github.com/Pantani/mars/docs"
 
-	marsmodule "github.com/cosmonaut/mars/x/mars"
-	marsmodulekeeper "github.com/cosmonaut/mars/x/mars/keeper"
-	marsmoduletypes "github.com/cosmonaut/mars/x/mars/types"
+	marsmodule "github.com/Pantani/mars/x/mars"
+	marsmodulekeeper "github.com/Pantani/mars/x/mars/keeper"
+	marsmoduletypes "github.com/Pantani/mars/x/mars/types"
 	// this line is used by starport scaffolding # stargate/app/moduleImport
 )
 

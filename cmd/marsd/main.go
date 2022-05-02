@@ -3,9 +3,9 @@ package main
 import (
 	"os"
 
-	"github.com/cosmonaut/mars/app"
+	"github.com/Pantani/mars/app"
 	svrcmd "github.com/cosmos/cosmos-sdk/server/cmd"
-	"github.com/tendermint/starport/starport/pkg/cosmoscmd"
+	"github.com/ignite-hq/cli/ignite/pkg/cosmoscmd"
 )
 
 func main() {

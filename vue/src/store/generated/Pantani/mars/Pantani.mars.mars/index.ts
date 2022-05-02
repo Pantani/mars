@@ -89,7 +89,7 @@ export default {
 	},
 	actions: {
 		init({ dispatch, rootGetters }) {
-			console.log('Vuex module: cosmonaut.mars.mars initialized!')
+			console.log('Vuex module: Pantani.mars.mars initialized!')
 			if (rootGetters['common/env/client']) {
 				rootGetters['common/env/client'].on('newblock', () => {
 					dispatch('StoreUpdate')

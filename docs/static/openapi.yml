@@ -28270,7 +28270,7 @@ paths:
                         properties:
                           hash:
                             type: string
-                        title: MerkelRool represents a Merkel Root in ConsensusState
+                        title: MerkleRoot represents a Merkle Root in ConsensusState
                     title: >-
                       ConsensusState represents a Consensus State
 
@@ -48353,7 +48353,7 @@ definitions:
             properties:
               hash:
                 type: string
-            title: MerkelRool represents a Merkel Root in ConsensusState
+            title: MerkleRoot represents a Merkle Root in ConsensusState
         title: >-
           ConsensusState represents a Consensus State
 
@@ -48437,7 +48437,7 @@ definitions:
                 properties:
                   hash:
                     type: string
-                title: MerkelRool represents a Merkel Root in ConsensusState
+                title: MerkleRoot represents a Merkle Root in ConsensusState
             title: >-
               ConsensusState represents a Consensus State
 
@@ -48463,18 +48463,18 @@ definitions:
         properties:
           hash:
             type: string
-        title: MerkelRool represents a Merkel Root in ConsensusState
+        title: MerkleRoot represents a Merkle Root in ConsensusState
     title: >-
       ConsensusState represents a Consensus State
 
       it is compatible with the dumped state from `appd q ibc client
       self-consensus-state` command
-  tendermint.spn.types.MerkelRool:
+  tendermint.spn.types.MerkleRoot:
     type: object
     properties:
       hash:
         type: string
-    title: MerkelRool represents a Merkel Root in ConsensusState
+    title: MerkleRoot represents a Merkle Root in ConsensusState
   tendermint.spn.types.SignatureCount:
     type: object
     properties:

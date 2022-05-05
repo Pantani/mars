@@ -1,16 +1,25 @@
 accounts:
   - name: alice
+    mnemonic: "slide moment original seven milk crawl help text kick fluid boring awkward doll wonder sure fragile plate grid hard next casual expire okay body"
     coins: [ "200000000stake" ]
-    mnemonic: "invite velvet shuffle day shed ramp page business index curve voice question crunch fence pepper olive honey train volcano crime very oil saddle average"
   - name: bob
+    mnemonic: "trap possible liquid elite embody host segment fantasy swim cable digital eager tiny broom burden diary earn hen grow engine pigeon fringe claim program"
     coins: [ "200000000stake" ]
-    mnemonic: "fork edit oil vacant town valid hard pepper square push pear scale story twenty bleak captain egg figure smile witness throw aware effort transfer"
   - name: carol
+    mnemonic: "great immense still pill defense fetch pencil slow purchase symptom speed arm shoot fence have divorce cigar rapid hen vehicle pear evolve correct nerve"
     coins: [ "200000000stake" ]
-    mnemonic: "amount enable repeat velvet horror dutch truth nuclear stand minute mistake enjoy twice wife sheriff throw sauce unfair stamp chaos antique bread work author"
-  - name: danilo
-    coins: [ "900000000stake" ]
-    mnemonic: "amazing good visual joy endless pony crater canyon manual party helmet local already order custom grocery harbor pioneer cattle limit crazy flavor angle fiscal"
+  - name: dave
+    mnemonic: "resist portion leisure lawn shell lunch inhale start pupil add fault segment hour dwarf toddler insect frame math remove twist easy paddle nice rhythm"
+    coins: [ "200000000stake" ]
+  - name: joe
+    mnemonic: "diary behind allow lawn loop assault armor survey media toe rural mass skull way crater tobacco pair glare window soon lift pistol fitness annual"
+    coins: [ "200000000stake" ]
+  - name: steve
+    mnemonic: "initial aisle blush gift shuffle hat solar dove dwarf soup credit acid update seed mercy thumb swear main verb image dove rose chat inmate"
+    coins: [ "200000000stake" ]
+  - name: olivia
+    mnemonic: "dinosaur submit around jacket movie garden crash weather matter option time cabbage butter mind skin nature ride mosquito seat lock elephant merit empower come"
+    coins: [ "200000000stake" ]
 validator:
   name: alice
   staked: "100000000stake"

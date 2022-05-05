@@ -8,6 +8,9 @@ accounts:
   - name: carol
     coins: [ "200000000stake" ]
     mnemonic: "amount enable repeat velvet horror dutch truth nuclear stand minute mistake enjoy twice wife sheriff throw sauce unfair stamp chaos antique bread work author"
+  - name: danilo
+    coins: [ "900000000stake" ]
+    mnemonic: "amazing good visual joy endless pony crater canyon manual party helmet local already order custom grocery harbor pioneer cattle limit crazy flavor angle fiscal"
 validator:
   name: alice
   staked: "100000000stake"
@@ -17,8 +20,8 @@ client:
   vuex:
     path: "vue/src/store"
 faucet:
-  name: bob
-  coins: [ "5token", "100000stake" ]
+  name: danilo
+  coins: [ "50token", "10000stake" ]
   port: 4502
 host:
   rpc: ":26659"

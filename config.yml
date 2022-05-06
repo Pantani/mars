@@ -1,13 +1,13 @@
 accounts:
   - name: alice
     mnemonic: "slide moment original seven milk crawl help text kick fluid boring awkward doll wonder sure fragile plate grid hard next casual expire okay body"
-    coins: [ "200000000stake" ]
+    coins: [ "200000000token,200000000stake" ]
   - name: bob
     mnemonic: "trap possible liquid elite embody host segment fantasy swim cable digital eager tiny broom burden diary earn hen grow engine pigeon fringe claim program"
     coins: [ "200000000token,200000000stake" ]
   - name: carol
     mnemonic: "great immense still pill defense fetch pencil slow purchase symptom speed arm shoot fence have divorce cigar rapid hen vehicle pear evolve correct nerve"
-    coins: [ "200000000stake" ]
+    coins: [ "200000000token,200000000stake" ]
   - name: dave
     mnemonic: "resist portion leisure lawn shell lunch inhale start pupil add fault segment hour dwarf toddler insect frame math remove twist easy paddle nice rhythm"
     coins: [ "200000000stake" ]

@@ -29,7 +29,7 @@ client:
   vuex:
     path: "vue/src/store"
 faucet:
-  name: bob
+  name: alice
   coins: [ "50token", "10000stake" ]
   port: 4502
 host:

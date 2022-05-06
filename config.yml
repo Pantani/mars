@@ -33,7 +33,7 @@ faucet:
   coins: [ "50token", "10000stake" ]
   port: 4502
 host:
-  rpc: ":26659"
+  rpc: "tcp://0.0.0.0:26659"
   p2p: "tcp://0.0.0.0:26658"
   prof: ":6061"
   grpc: ":9092"

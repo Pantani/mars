@@ -1,24 +1,19 @@
 package main
 
 import (
+	"fmt"
 	"os"
 
-	"github.com/Pantani/mars/app"
 	svrcmd "github.com/cosmos/cosmos-sdk/server/cmd"
-	"github.com/ignite-hq/cli/ignite/pkg/cosmoscmd"
+
+	"github.com/ignite/mars/app"
+	"github.com/ignite/mars/cmd/marsd/cmd"
 )
 
 func main() {
-	rootCmd, _ := cosmoscmd.NewRootCmd(
-		app.Name,
-		app.AccountAddressPrefix,
-		app.DefaultNodeHome,
-		app.Name,
-		app.ModuleBasics,
-		app.New,
-		// this line is used by starport scaffolding # root/arguments
-	)
-	if err := svrcmd.Execute(rootCmd, app.DefaultNodeHome); err != nil {
+	rootCmd := cmd.NewRootCmd()
+	if err := svrcmd.Execute(rootCmd, "", app.DefaultNodeHome); err != nil {
+		fmt.Fprintln(rootCmd.OutOrStderr(), err)
 		os.Exit(1)
 	}
 }

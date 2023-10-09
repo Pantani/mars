@@ -1,41 +1,21 @@
+version: 1
 accounts:
-  - name: alice
-    mnemonic: "slide moment original seven milk crawl help text kick fluid boring awkward doll wonder sure fragile plate grid hard next casual expire okay body"
-    coins: [ "200000000token,200000000stake" ]
-  - name: bob
-    mnemonic: "trap possible liquid elite embody host segment fantasy swim cable digital eager tiny broom burden diary earn hen grow engine pigeon fringe claim program"
-    coins: [ "200000000token,200000000stake" ]
-  - name: carol
-    mnemonic: "great immense still pill defense fetch pencil slow purchase symptom speed arm shoot fence have divorce cigar rapid hen vehicle pear evolve correct nerve"
-    coins: [ "200000000token,200000000stake" ]
-  - name: dave
-    mnemonic: "resist portion leisure lawn shell lunch inhale start pupil add fault segment hour dwarf toddler insect frame math remove twist easy paddle nice rhythm"
-    coins: [ "200000000stake" ]
-  - name: joe
-    mnemonic: "diary behind allow lawn loop assault armor survey media toe rural mass skull way crater tobacco pair glare window soon lift pistol fitness annual"
-    coins: [ "200000000stake" ]
-  - name: steve
-    mnemonic: "initial aisle blush gift shuffle hat solar dove dwarf soup credit acid update seed mercy thumb swear main verb image dove rose chat inmate"
-    coins: [ "200000000stake" ]
-  - name: olivia
-    mnemonic: "dinosaur submit around jacket movie garden crash weather matter option time cabbage butter mind skin nature ride mosquito seat lock elephant merit empower come"
-    coins: [ "200000000stake" ]
-validator:
-  name: alice
-  staked: "100000000stake"
+- name: alice
+  coins:
+  - 20000token
+  - 200000000stake
+- name: bob
+  coins:
+  - 10000token
+  - 100000000stake
 client:
   openapi:
-    path: "docs/static/openapi.yml"
-  vuex:
-    path: "vue/src/store"
+    path: docs/static/openapi.yml
 faucet:
-  name: alice
-  coins: [ "50token", "10000stake" ]
-  port: 4502
-host:
-  rpc: "tcp://0.0.0.0:26659"
-  p2p: "tcp://0.0.0.0:26658"
-  prof: ":6061"
-  grpc: ":9092"
-  grpc-web: ":9093"
-  api: ":1318"
+  name: bob
+  coins:
+  - 5token
+  - 100000stake
+validators:
+- name: alice
+  bonded: 100000000stake

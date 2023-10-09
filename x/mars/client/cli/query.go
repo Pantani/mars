@@ -10,11 +10,11 @@ import (
 	// "github.com/cosmos/cosmos-sdk/client/flags"
 	// sdk "github.com/cosmos/cosmos-sdk/types"
 
-	"github.com/Pantani/mars/x/mars/types"
+	"github.com/ignite/mars/x/mars/types"
 )
 
 // GetQueryCmd returns the cli query commands for this module
-func GetQueryCmd(queryRoute string) *cobra.Command {
+func GetQueryCmd() *cobra.Command {
 	// Group mars queries under a subcommand
 	cmd := &cobra.Command{
 		Use:                        types.ModuleName,
@@ -25,6 +25,8 @@ func GetQueryCmd(queryRoute string) *cobra.Command {
 	}
 
 	cmd.AddCommand(CmdQueryParams())
+	cmd.AddCommand(CmdListUser())
+	cmd.AddCommand(CmdShowUser())
 	// this line is used by starport scaffolding # 1
 
 	return cmd

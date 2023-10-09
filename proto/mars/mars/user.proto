@@ -1,0 +1,10 @@
+syntax = "proto3";
+package mars.mars;
+
+option go_package = "github.com/ignite/mars/x/mars/types";
+
+message User {
+  uint64 id = 1;
+  string email = 2; 
+  string creator = 3;
+}

@@ -5,7 +5,6 @@ package mars.mars;
 import "amino/amino.proto";
 import "gogoproto/gogo.proto";
 import "mars/mars/params.proto";
-import "mars/mars/user.proto";
 
 option go_package = "github.com/ignite/mars/x/mars/types";
 
@@ -13,8 +12,7 @@ option go_package = "github.com/ignite/mars/x/mars/types";
 message GenesisState {
   
   // params defines all the parameters of the module.
-           Params params    = 1 [(gogoproto.nullable) = false, (amino.dont_omitempty) = true];
-  repeated User   userList  = 2 [(gogoproto.nullable) = false] ;
-           uint64 userCount = 3;
+  Params params  = 1 [(gogoproto.nullable) = false, (amino.dont_omitempty) = true];
+  string port_id = 2;
 }
 

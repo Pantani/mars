@@ -72,11 +72,10 @@ import (
 	ibcfeetypes "github.com/cosmos/ibc-go/v8/modules/apps/29-fee/types"
 	ibctransfertypes "github.com/cosmos/ibc-go/v8/modules/apps/transfer/types"
 	ibcexported "github.com/cosmos/ibc-go/v8/modules/core/exported"
-	"google.golang.org/protobuf/types/known/durationpb"
-
 	marsmodulev1 "github.com/ignite/mars/api/mars/mars/module"
 	_ "github.com/ignite/mars/x/mars/module" // import for side-effects
 	marsmoduletypes "github.com/ignite/mars/x/mars/types"
+	"google.golang.org/protobuf/types/known/durationpb"
 	// this line is used by starport scaffolding # stargate/app/moduleImport
 )
 

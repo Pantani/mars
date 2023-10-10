@@ -26,6 +26,8 @@ import (
 	solomachine "github.com/cosmos/ibc-go/v8/modules/light-clients/06-solomachine"
 	ibctm "github.com/cosmos/ibc-go/v8/modules/light-clients/07-tendermint"
 	// this line is used by starport scaffolding # ibc/app/import
+	marsmodule "github.com/ignite/mars/x/mars/module"
+	marsmoduletypes "github.com/ignite/mars/x/mars/types"
 )
 
 func (app *App) registerIBCModules() {
@@ -149,6 +151,8 @@ func (app *App) registerIBCModules() {
 		AddRoute(icacontrollertypes.SubModuleName, icaControllerIBCModule).
 		AddRoute(icahosttypes.SubModuleName, icaHostIBCModule)
 
+	marsIBCModule := ibcfee.NewIBCMiddleware(marsmodule.NewIBCModule(app.MarsKeeper), app.IBCFeeKeeper)
+	ibcRouter.AddRoute(marsmoduletypes.ModuleName, marsIBCModule)
 	// this line is used by starport scaffolding # ibc/app/module
 
 	app.IBCKeeper.SetRouter(ibcRouter)

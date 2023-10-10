@@ -95,7 +95,6 @@ type App struct {
 	// keepers
 	AccountKeeper         authkeeper.AccountKeeper
 	BankKeeper            bankkeeper.Keeper
-	CapabilityKeeper      *capabilitykeeper.Keeper
 	StakingKeeper         *stakingkeeper.Keeper
 	SlashingKeeper        slashingkeeper.Keeper
 	MintKeeper            mintkeeper.Keeper
@@ -113,6 +112,7 @@ type App struct {
 
 	// IBC
 	IBCKeeper           *ibckeeper.Keeper // IBC Keeper must be a pointer in the app, so we can SetRouter on it correctly
+	CapabilityKeeper    *capabilitykeeper.Keeper
 	IBCFeeKeeper        ibcfeekeeper.Keeper
 	ICAControllerKeeper icacontrollerkeeper.Keeper
 	ICAHostKeeper       icahostkeeper.Keeper
@@ -148,7 +148,7 @@ func New(
 	loadLatest bool,
 	appOpts servertypes.AppOptions,
 	baseAppOptions ...func(*baseapp.BaseApp),
-) *App {
+) (*App, error) {
 	var (
 		app        = &App{}
 		appBuilder *runtime.AppBuilder
@@ -164,6 +164,7 @@ func New(
 				// Passing the getter, the app IBC Keeper will always be accessible.
 				// This needs to be removed after IBC supported App Wiring.
 				app.GetIBCKeeper,
+				app.GetCapabilityScopedKeeper,
 				// supply the logger
 				logger,
 
@@ -276,7 +277,7 @@ func New(
 
 	// register streaming services
 	if err := app.RegisterStreamingServices(appOpts, app.kvStoreKeys()); err != nil {
-		panic(1)
+		return nil, err
 	}
 
 	/****  Module Options ****/
@@ -309,10 +310,10 @@ func New(
 	// })
 
 	if err := app.Load(loadLatest); err != nil {
-		panic(err)
+		return nil, err
 	}
 
-	return app
+	return app, nil
 }
 
 // LegacyAmino returns App's amino codec.
@@ -329,16 +330,6 @@ func (app *App) LegacyAmino() *codec.LegacyAmino {
 // for modules to register their own custom testing types.
 func (app *App) AppCodec() codec.Codec {
 	return app.appCodec
-}
-
-// InterfaceRegistry returns App's InterfaceRegistry
-func (app *App) InterfaceRegistry() codectypes.InterfaceRegistry {
-	return app.interfaceRegistry
-}
-
-// TxConfig returns App's TxConfig
-func (app *App) TxConfig() client.TxConfig {
-	return app.txConfig
 }
 
 // GetKey returns the KVStoreKey for the provided store key.
@@ -397,9 +388,14 @@ func (app *App) RegisterAPIRoutes(apiSvr *api.Server, apiConfig config.APIConfig
 	docs.RegisterOpenAPIService(Name, apiSvr.Router)
 }
 
-// GetIBCKeeper returns the IBC keeper
+// GetIBCKeeper returns the IBC keeper.
 func (app *App) GetIBCKeeper() *ibckeeper.Keeper {
 	return app.IBCKeeper
+}
+
+// GetCapabilityScopedKeeper returns the capability scoped keeper.
+func (app *App) GetCapabilityScopedKeeper(moduleName string) capabilitykeeper.ScopedKeeper {
+	return app.CapabilityKeeper.ScopeToModule(moduleName)
 }
 
 // GetMaccPerms returns a copy of the module account permissions

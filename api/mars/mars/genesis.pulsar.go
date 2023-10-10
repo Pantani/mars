@@ -14,70 +14,17 @@ import (
 	sync "sync"
 )
 
-var _ protoreflect.List = (*_GenesisState_2_list)(nil)
-
-type _GenesisState_2_list struct {
-	list *[]*User
-}
-
-func (x *_GenesisState_2_list) Len() int {
-	if x.list == nil {
-		return 0
-	}
-	return len(*x.list)
-}
-
-func (x *_GenesisState_2_list) Get(i int) protoreflect.Value {
-	return protoreflect.ValueOfMessage((*x.list)[i].ProtoReflect())
-}
-
-func (x *_GenesisState_2_list) Set(i int, value protoreflect.Value) {
-	valueUnwrapped := value.Message()
-	concreteValue := valueUnwrapped.Interface().(*User)
-	(*x.list)[i] = concreteValue
-}
-
-func (x *_GenesisState_2_list) Append(value protoreflect.Value) {
-	valueUnwrapped := value.Message()
-	concreteValue := valueUnwrapped.Interface().(*User)
-	*x.list = append(*x.list, concreteValue)
-}
-
-func (x *_GenesisState_2_list) AppendMutable() protoreflect.Value {
-	v := new(User)
-	*x.list = append(*x.list, v)
-	return protoreflect.ValueOfMessage(v.ProtoReflect())
-}
-
-func (x *_GenesisState_2_list) Truncate(n int) {
-	for i := n; i < len(*x.list); i++ {
-		(*x.list)[i] = nil
-	}
-	*x.list = (*x.list)[:n]
-}
-
-func (x *_GenesisState_2_list) NewElement() protoreflect.Value {
-	v := new(User)
-	return protoreflect.ValueOfMessage(v.ProtoReflect())
-}
-
-func (x *_GenesisState_2_list) IsValid() bool {
-	return x.list != nil
-}
-
 var (
-	md_GenesisState           protoreflect.MessageDescriptor
-	fd_GenesisState_params    protoreflect.FieldDescriptor
-	fd_GenesisState_userList  protoreflect.FieldDescriptor
-	fd_GenesisState_userCount protoreflect.FieldDescriptor
+	md_GenesisState         protoreflect.MessageDescriptor
+	fd_GenesisState_params  protoreflect.FieldDescriptor
+	fd_GenesisState_port_id protoreflect.FieldDescriptor
 )
 
 func init() {
 	file_mars_mars_genesis_proto_init()
 	md_GenesisState = File_mars_mars_genesis_proto.Messages().ByName("GenesisState")
 	fd_GenesisState_params = md_GenesisState.Fields().ByName("params")
-	fd_GenesisState_userList = md_GenesisState.Fields().ByName("userList")
-	fd_GenesisState_userCount = md_GenesisState.Fields().ByName("userCount")
+	fd_GenesisState_port_id = md_GenesisState.Fields().ByName("port_id")
 }
 
 var _ protoreflect.Message = (*fastReflection_GenesisState)(nil)
@@ -151,15 +98,9 @@ func (x *fastReflection_GenesisState) Range(f func(protoreflect.FieldDescriptor,
 			return
 		}
 	}
-	if len(x.UserList) != 0 {
-		value := protoreflect.ValueOfList(&_GenesisState_2_list{list: &x.UserList})
-		if !f(fd_GenesisState_userList, value) {
-			return
-		}
-	}
-	if x.UserCount != uint64(0) {
-		value := protoreflect.ValueOfUint64(x.UserCount)
-		if !f(fd_GenesisState_userCount, value) {
+	if x.PortId != "" {
+		value := protoreflect.ValueOfString(x.PortId)
+		if !f(fd_GenesisState_port_id, value) {
 			return
 		}
 	}
@@ -180,10 +121,8 @@ func (x *fastReflection_GenesisState) Has(fd protoreflect.FieldDescriptor) bool 
 	switch fd.FullName() {
 	case "mars.mars.GenesisState.params":
 		return x.Params != nil
-	case "mars.mars.GenesisState.userList":
-		return len(x.UserList) != 0
-	case "mars.mars.GenesisState.userCount":
-		return x.UserCount != uint64(0)
+	case "mars.mars.GenesisState.port_id":
+		return x.PortId != ""
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: mars.mars.GenesisState"))
@@ -202,10 +141,8 @@ func (x *fastReflection_GenesisState) Clear(fd protoreflect.FieldDescriptor) {
 	switch fd.FullName() {
 	case "mars.mars.GenesisState.params":
 		x.Params = nil
-	case "mars.mars.GenesisState.userList":
-		x.UserList = nil
-	case "mars.mars.GenesisState.userCount":
-		x.UserCount = uint64(0)
+	case "mars.mars.GenesisState.port_id":
+		x.PortId = ""
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: mars.mars.GenesisState"))
@@ -225,15 +162,9 @@ func (x *fastReflection_GenesisState) Get(descriptor protoreflect.FieldDescripto
 	case "mars.mars.GenesisState.params":
 		value := x.Params
 		return protoreflect.ValueOfMessage(value.ProtoReflect())
-	case "mars.mars.GenesisState.userList":
-		if len(x.UserList) == 0 {
-			return protoreflect.ValueOfList(&_GenesisState_2_list{})
-		}
-		listValue := &_GenesisState_2_list{list: &x.UserList}
-		return protoreflect.ValueOfList(listValue)
-	case "mars.mars.GenesisState.userCount":
-		value := x.UserCount
-		return protoreflect.ValueOfUint64(value)
+	case "mars.mars.GenesisState.port_id":
+		value := x.PortId
+		return protoreflect.ValueOfString(value)
 	default:
 		if descriptor.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: mars.mars.GenesisState"))
@@ -256,12 +187,8 @@ func (x *fastReflection_GenesisState) Set(fd protoreflect.FieldDescriptor, value
 	switch fd.FullName() {
 	case "mars.mars.GenesisState.params":
 		x.Params = value.Message().Interface().(*Params)
-	case "mars.mars.GenesisState.userList":
-		lv := value.List()
-		clv := lv.(*_GenesisState_2_list)
-		x.UserList = *clv.list
-	case "mars.mars.GenesisState.userCount":
-		x.UserCount = value.Uint()
+	case "mars.mars.GenesisState.port_id":
+		x.PortId = value.Interface().(string)
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: mars.mars.GenesisState"))
@@ -287,14 +214,8 @@ func (x *fastReflection_GenesisState) Mutable(fd protoreflect.FieldDescriptor) p
 			x.Params = new(Params)
 		}
 		return protoreflect.ValueOfMessage(x.Params.ProtoReflect())
-	case "mars.mars.GenesisState.userList":
-		if x.UserList == nil {
-			x.UserList = []*User{}
-		}
-		value := &_GenesisState_2_list{list: &x.UserList}
-		return protoreflect.ValueOfList(value)
-	case "mars.mars.GenesisState.userCount":
-		panic(fmt.Errorf("field userCount of message mars.mars.GenesisState is not mutable"))
+	case "mars.mars.GenesisState.port_id":
+		panic(fmt.Errorf("field port_id of message mars.mars.GenesisState is not mutable"))
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: mars.mars.GenesisState"))
@@ -311,11 +232,8 @@ func (x *fastReflection_GenesisState) NewField(fd protoreflect.FieldDescriptor) 
 	case "mars.mars.GenesisState.params":
 		m := new(Params)
 		return protoreflect.ValueOfMessage(m.ProtoReflect())
-	case "mars.mars.GenesisState.userList":
-		list := []*User{}
-		return protoreflect.ValueOfList(&_GenesisState_2_list{list: &list})
-	case "mars.mars.GenesisState.userCount":
-		return protoreflect.ValueOfUint64(uint64(0))
+	case "mars.mars.GenesisState.port_id":
+		return protoreflect.ValueOfString("")
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: mars.mars.GenesisState"))
@@ -389,14 +307,9 @@ func (x *fastReflection_GenesisState) ProtoMethods() *protoiface.Methods {
 			l = options.Size(x.Params)
 			n += 1 + l + runtime.Sov(uint64(l))
 		}
-		if len(x.UserList) > 0 {
-			for _, e := range x.UserList {
-				l = options.Size(e)
-				n += 1 + l + runtime.Sov(uint64(l))
-			}
-		}
-		if x.UserCount != 0 {
-			n += 1 + runtime.Sov(uint64(x.UserCount))
+		l = len(x.PortId)
+		if l > 0 {
+			n += 1 + l + runtime.Sov(uint64(l))
 		}
 		if x.unknownFields != nil {
 			n += len(x.unknownFields)
@@ -427,26 +340,12 @@ func (x *fastReflection_GenesisState) ProtoMethods() *protoiface.Methods {
 			i -= len(x.unknownFields)
 			copy(dAtA[i:], x.unknownFields)
 		}
-		if x.UserCount != 0 {
-			i = runtime.EncodeVarint(dAtA, i, uint64(x.UserCount))
+		if len(x.PortId) > 0 {
+			i -= len(x.PortId)
+			copy(dAtA[i:], x.PortId)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.PortId)))
 			i--
-			dAtA[i] = 0x18
-		}
-		if len(x.UserList) > 0 {
-			for iNdEx := len(x.UserList) - 1; iNdEx >= 0; iNdEx-- {
-				encoded, err := options.Marshal(x.UserList[iNdEx])
-				if err != nil {
-					return protoiface.MarshalOutput{
-						NoUnkeyedLiterals: input.NoUnkeyedLiterals,
-						Buf:               input.Buf,
-					}, err
-				}
-				i -= len(encoded)
-				copy(dAtA[i:], encoded)
-				i = runtime.EncodeVarint(dAtA, i, uint64(len(encoded)))
-				i--
-				dAtA[i] = 0x12
-			}
+			dAtA[i] = 0x12
 		}
 		if x.Params != nil {
 			encoded, err := options.Marshal(x.Params)
@@ -549,9 +448,9 @@ func (x *fastReflection_GenesisState) ProtoMethods() *protoiface.Methods {
 				iNdEx = postIndex
 			case 2:
 				if wireType != 2 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field UserList", wireType)
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field PortId", wireType)
 				}
-				var msglen int
+				var stringLen uint64
 				for shift := uint(0); ; shift += 7 {
 					if shift >= 64 {
 						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
@@ -561,45 +460,24 @@ func (x *fastReflection_GenesisState) ProtoMethods() *protoiface.Methods {
 					}
 					b := dAtA[iNdEx]
 					iNdEx++
-					msglen |= int(b&0x7F) << shift
+					stringLen |= uint64(b&0x7F) << shift
 					if b < 0x80 {
 						break
 					}
 				}
-				if msglen < 0 {
+				intStringLen := int(stringLen)
+				if intStringLen < 0 {
 					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
 				}
-				postIndex := iNdEx + msglen
+				postIndex := iNdEx + intStringLen
 				if postIndex < 0 {
 					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
 				}
 				if postIndex > l {
 					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
 				}
-				x.UserList = append(x.UserList, &User{})
-				if err := options.Unmarshal(dAtA[iNdEx:postIndex], x.UserList[len(x.UserList)-1]); err != nil {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, err
-				}
+				x.PortId = string(dAtA[iNdEx:postIndex])
 				iNdEx = postIndex
-			case 3:
-				if wireType != 0 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field UserCount", wireType)
-				}
-				x.UserCount = 0
-				for shift := uint(0); ; shift += 7 {
-					if shift >= 64 {
-						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
-					}
-					if iNdEx >= l {
-						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
-					}
-					b := dAtA[iNdEx]
-					iNdEx++
-					x.UserCount |= uint64(b&0x7F) << shift
-					if b < 0x80 {
-						break
-					}
-				}
 			default:
 				iNdEx = preIndex
 				skippy, err := runtime.Skip(dAtA[iNdEx:])
@@ -655,9 +533,8 @@ type GenesisState struct {
 	unknownFields protoimpl.UnknownFields
 
 	// params defines all the parameters of the module.
-	Params    *Params `protobuf:"bytes,1,opt,name=params,proto3" json:"params,omitempty"`
-	UserList  []*User `protobuf:"bytes,2,rep,name=userList,proto3" json:"userList,omitempty"`
-	UserCount uint64  `protobuf:"varint,3,opt,name=userCount,proto3" json:"userCount,omitempty"`
+	Params *Params `protobuf:"bytes,1,opt,name=params,proto3" json:"params,omitempty"`
+	PortId string  `protobuf:"bytes,2,opt,name=port_id,json=portId,proto3" json:"port_id,omitempty"`
 }
 
 func (x *GenesisState) Reset() {
@@ -687,18 +564,11 @@ func (x *GenesisState) GetParams() *Params {
 	return nil
 }
 
-func (x *GenesisState) GetUserList() []*User {
+func (x *GenesisState) GetPortId() string {
 	if x != nil {
-		return x.UserList
+		return x.PortId
 	}
-	return nil
-}
-
-func (x *GenesisState) GetUserCount() uint64 {
-	if x != nil {
-		return x.UserCount
-	}
-	return 0
+	return ""
 }
 
 var File_mars_mars_genesis_proto protoreflect.FileDescriptor
@@ -710,26 +580,21 @@ var file_mars_mars_genesis_proto_rawDesc = []byte{
 	0x6f, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x14, 0x67, 0x6f, 0x67, 0x6f, 0x70, 0x72, 0x6f,
 	0x74, 0x6f, 0x2f, 0x67, 0x6f, 0x67, 0x6f, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x16, 0x6d,
 	0x61, 0x72, 0x73, 0x2f, 0x6d, 0x61, 0x72, 0x73, 0x2f, 0x70, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x2e,
-	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x14, 0x6d, 0x61, 0x72, 0x73, 0x2f, 0x6d, 0x61, 0x72, 0x73,
-	0x2f, 0x75, 0x73, 0x65, 0x72, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0x95, 0x01, 0x0a, 0x0c,
-	0x47, 0x65, 0x6e, 0x65, 0x73, 0x69, 0x73, 0x53, 0x74, 0x61, 0x74, 0x65, 0x12, 0x34, 0x0a, 0x06,
-	0x70, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x11, 0x2e, 0x6d,
-	0x61, 0x72, 0x73, 0x2e, 0x6d, 0x61, 0x72, 0x73, 0x2e, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x42,
-	0x09, 0xc8, 0xde, 0x1f, 0x00, 0xa8, 0xe7, 0xb0, 0x2a, 0x01, 0x52, 0x06, 0x70, 0x61, 0x72, 0x61,
-	0x6d, 0x73, 0x12, 0x31, 0x0a, 0x08, 0x75, 0x73, 0x65, 0x72, 0x4c, 0x69, 0x73, 0x74, 0x18, 0x02,
-	0x20, 0x03, 0x28, 0x0b, 0x32, 0x0f, 0x2e, 0x6d, 0x61, 0x72, 0x73, 0x2e, 0x6d, 0x61, 0x72, 0x73,
-	0x2e, 0x55, 0x73, 0x65, 0x72, 0x42, 0x04, 0xc8, 0xde, 0x1f, 0x00, 0x52, 0x08, 0x75, 0x73, 0x65,
-	0x72, 0x4c, 0x69, 0x73, 0x74, 0x12, 0x1c, 0x0a, 0x09, 0x75, 0x73, 0x65, 0x72, 0x43, 0x6f, 0x75,
-	0x6e, 0x74, 0x18, 0x03, 0x20, 0x01, 0x28, 0x04, 0x52, 0x09, 0x75, 0x73, 0x65, 0x72, 0x43, 0x6f,
-	0x75, 0x6e, 0x74, 0x42, 0x7e, 0x0a, 0x0d, 0x63, 0x6f, 0x6d, 0x2e, 0x6d, 0x61, 0x72, 0x73, 0x2e,
-	0x6d, 0x61, 0x72, 0x73, 0x42, 0x0c, 0x47, 0x65, 0x6e, 0x65, 0x73, 0x69, 0x73, 0x50, 0x72, 0x6f,
-	0x74, 0x6f, 0x50, 0x01, 0x5a, 0x1a, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x73, 0x64, 0x6b, 0x2e,
-	0x69, 0x6f, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x6d, 0x61, 0x72, 0x73, 0x2f, 0x6d, 0x61, 0x72, 0x73,
-	0xa2, 0x02, 0x03, 0x4d, 0x4d, 0x58, 0xaa, 0x02, 0x09, 0x4d, 0x61, 0x72, 0x73, 0x2e, 0x4d, 0x61,
-	0x72, 0x73, 0xca, 0x02, 0x09, 0x4d, 0x61, 0x72, 0x73, 0x5c, 0x4d, 0x61, 0x72, 0x73, 0xe2, 0x02,
-	0x15, 0x4d, 0x61, 0x72, 0x73, 0x5c, 0x4d, 0x61, 0x72, 0x73, 0x5c, 0x47, 0x50, 0x42, 0x4d, 0x65,
-	0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0xea, 0x02, 0x0a, 0x4d, 0x61, 0x72, 0x73, 0x3a, 0x3a, 0x4d,
-	0x61, 0x72, 0x73, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0x5d, 0x0a, 0x0c, 0x47, 0x65, 0x6e, 0x65, 0x73, 0x69, 0x73,
+	0x53, 0x74, 0x61, 0x74, 0x65, 0x12, 0x34, 0x0a, 0x06, 0x70, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x18,
+	0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x11, 0x2e, 0x6d, 0x61, 0x72, 0x73, 0x2e, 0x6d, 0x61, 0x72,
+	0x73, 0x2e, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x42, 0x09, 0xc8, 0xde, 0x1f, 0x00, 0xa8, 0xe7,
+	0xb0, 0x2a, 0x01, 0x52, 0x06, 0x70, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x12, 0x17, 0x0a, 0x07, 0x70,
+	0x6f, 0x72, 0x74, 0x5f, 0x69, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x70, 0x6f,
+	0x72, 0x74, 0x49, 0x64, 0x42, 0x7e, 0x0a, 0x0d, 0x63, 0x6f, 0x6d, 0x2e, 0x6d, 0x61, 0x72, 0x73,
+	0x2e, 0x6d, 0x61, 0x72, 0x73, 0x42, 0x0c, 0x47, 0x65, 0x6e, 0x65, 0x73, 0x69, 0x73, 0x50, 0x72,
+	0x6f, 0x74, 0x6f, 0x50, 0x01, 0x5a, 0x1a, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x73, 0x64, 0x6b,
+	0x2e, 0x69, 0x6f, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x6d, 0x61, 0x72, 0x73, 0x2f, 0x6d, 0x61, 0x72,
+	0x73, 0xa2, 0x02, 0x03, 0x4d, 0x4d, 0x58, 0xaa, 0x02, 0x09, 0x4d, 0x61, 0x72, 0x73, 0x2e, 0x4d,
+	0x61, 0x72, 0x73, 0xca, 0x02, 0x09, 0x4d, 0x61, 0x72, 0x73, 0x5c, 0x4d, 0x61, 0x72, 0x73, 0xe2,
+	0x02, 0x15, 0x4d, 0x61, 0x72, 0x73, 0x5c, 0x4d, 0x61, 0x72, 0x73, 0x5c, 0x47, 0x50, 0x42, 0x4d,
+	0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0xea, 0x02, 0x0a, 0x4d, 0x61, 0x72, 0x73, 0x3a, 0x3a,
+	0x4d, 0x61, 0x72, 0x73, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -748,16 +613,14 @@ var file_mars_mars_genesis_proto_msgTypes = make([]protoimpl.MessageInfo, 1)
 var file_mars_mars_genesis_proto_goTypes = []interface{}{
 	(*GenesisState)(nil), // 0: mars.mars.GenesisState
 	(*Params)(nil),       // 1: mars.mars.Params
-	(*User)(nil),         // 2: mars.mars.User
 }
 var file_mars_mars_genesis_proto_depIdxs = []int32{
 	1, // 0: mars.mars.GenesisState.params:type_name -> mars.mars.Params
-	2, // 1: mars.mars.GenesisState.userList:type_name -> mars.mars.User
-	2, // [2:2] is the sub-list for method output_type
-	2, // [2:2] is the sub-list for method input_type
-	2, // [2:2] is the sub-list for extension type_name
-	2, // [2:2] is the sub-list for extension extendee
-	0, // [0:2] is the sub-list for field type_name
+	1, // [1:1] is the sub-list for method output_type
+	1, // [1:1] is the sub-list for method input_type
+	1, // [1:1] is the sub-list for extension type_name
+	1, // [1:1] is the sub-list for extension extendee
+	0, // [0:1] is the sub-list for field type_name
 }
 
 func init() { file_mars_mars_genesis_proto_init() }
@@ -766,7 +629,6 @@ func file_mars_mars_genesis_proto_init() {
 		return
 	}
 	file_mars_mars_params_proto_init()
-	file_mars_mars_user_proto_init()
 	if !protoimpl.UnsafeEnabled {
 		file_mars_mars_genesis_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*GenesisState); i {

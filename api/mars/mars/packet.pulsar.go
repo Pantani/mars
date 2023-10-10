@@ -2,12 +2,8 @@
 package mars
 
 import (
-	_ "cosmossdk.io/api/amino"
-	_ "cosmossdk.io/api/cosmos/base/query/v1beta1"
 	fmt "fmt"
 	runtime "github.com/cosmos/cosmos-proto/runtime"
-	_ "github.com/cosmos/gogoproto/gogoproto"
-	_ "google.golang.org/genproto/googleapis/api/annotations"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoiface "google.golang.org/protobuf/runtime/protoiface"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
@@ -17,24 +13,26 @@ import (
 )
 
 var (
-	md_QueryParamsRequest protoreflect.MessageDescriptor
+	md_MarsPacketData        protoreflect.MessageDescriptor
+	fd_MarsPacketData_noData protoreflect.FieldDescriptor
 )
 
 func init() {
-	file_mars_mars_query_proto_init()
-	md_QueryParamsRequest = File_mars_mars_query_proto.Messages().ByName("QueryParamsRequest")
+	file_mars_mars_packet_proto_init()
+	md_MarsPacketData = File_mars_mars_packet_proto.Messages().ByName("MarsPacketData")
+	fd_MarsPacketData_noData = md_MarsPacketData.Fields().ByName("noData")
 }
 
-var _ protoreflect.Message = (*fastReflection_QueryParamsRequest)(nil)
+var _ protoreflect.Message = (*fastReflection_MarsPacketData)(nil)
 
-type fastReflection_QueryParamsRequest QueryParamsRequest
+type fastReflection_MarsPacketData MarsPacketData
 
-func (x *QueryParamsRequest) ProtoReflect() protoreflect.Message {
-	return (*fastReflection_QueryParamsRequest)(x)
+func (x *MarsPacketData) ProtoReflect() protoreflect.Message {
+	return (*fastReflection_MarsPacketData)(x)
 }
 
-func (x *QueryParamsRequest) slowProtoReflect() protoreflect.Message {
-	mi := &file_mars_mars_query_proto_msgTypes[0]
+func (x *MarsPacketData) slowProtoReflect() protoreflect.Message {
+	mi := &file_mars_mars_packet_proto_msgTypes[0]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -45,43 +43,43 @@ func (x *QueryParamsRequest) slowProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-var _fastReflection_QueryParamsRequest_messageType fastReflection_QueryParamsRequest_messageType
-var _ protoreflect.MessageType = fastReflection_QueryParamsRequest_messageType{}
+var _fastReflection_MarsPacketData_messageType fastReflection_MarsPacketData_messageType
+var _ protoreflect.MessageType = fastReflection_MarsPacketData_messageType{}
 
-type fastReflection_QueryParamsRequest_messageType struct{}
+type fastReflection_MarsPacketData_messageType struct{}
 
-func (x fastReflection_QueryParamsRequest_messageType) Zero() protoreflect.Message {
-	return (*fastReflection_QueryParamsRequest)(nil)
+func (x fastReflection_MarsPacketData_messageType) Zero() protoreflect.Message {
+	return (*fastReflection_MarsPacketData)(nil)
 }
-func (x fastReflection_QueryParamsRequest_messageType) New() protoreflect.Message {
-	return new(fastReflection_QueryParamsRequest)
+func (x fastReflection_MarsPacketData_messageType) New() protoreflect.Message {
+	return new(fastReflection_MarsPacketData)
 }
-func (x fastReflection_QueryParamsRequest_messageType) Descriptor() protoreflect.MessageDescriptor {
-	return md_QueryParamsRequest
+func (x fastReflection_MarsPacketData_messageType) Descriptor() protoreflect.MessageDescriptor {
+	return md_MarsPacketData
 }
 
 // Descriptor returns message descriptor, which contains only the protobuf
 // type information for the message.
-func (x *fastReflection_QueryParamsRequest) Descriptor() protoreflect.MessageDescriptor {
-	return md_QueryParamsRequest
+func (x *fastReflection_MarsPacketData) Descriptor() protoreflect.MessageDescriptor {
+	return md_MarsPacketData
 }
 
 // Type returns the message type, which encapsulates both Go and protobuf
 // type information. If the Go type information is not needed,
 // it is recommended that the message descriptor be used instead.
-func (x *fastReflection_QueryParamsRequest) Type() protoreflect.MessageType {
-	return _fastReflection_QueryParamsRequest_messageType
+func (x *fastReflection_MarsPacketData) Type() protoreflect.MessageType {
+	return _fastReflection_MarsPacketData_messageType
 }
 
 // New returns a newly allocated and mutable empty message.
-func (x *fastReflection_QueryParamsRequest) New() protoreflect.Message {
-	return new(fastReflection_QueryParamsRequest)
+func (x *fastReflection_MarsPacketData) New() protoreflect.Message {
+	return new(fastReflection_MarsPacketData)
 }
 
 // Interface unwraps the message reflection interface and
 // returns the underlying ProtoMessage interface.
-func (x *fastReflection_QueryParamsRequest) Interface() protoreflect.ProtoMessage {
-	return (*QueryParamsRequest)(x)
+func (x *fastReflection_MarsPacketData) Interface() protoreflect.ProtoMessage {
+	return (*MarsPacketData)(x)
 }
 
 // Range iterates over every populated field in an undefined order,
@@ -89,7 +87,17 @@ func (x *fastReflection_QueryParamsRequest) Interface() protoreflect.ProtoMessag
 // Range returns immediately if f returns false.
 // While iterating, mutating operations may only be performed
 // on the current field descriptor.
-func (x *fastReflection_QueryParamsRequest) Range(f func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
+func (x *fastReflection_MarsPacketData) Range(f func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
+	if x.Packet != nil {
+		switch o := x.Packet.(type) {
+		case *MarsPacketData_NoData:
+			v := o.NoData
+			value := protoreflect.ValueOfMessage(v.ProtoReflect())
+			if !f(fd_MarsPacketData_noData, value) {
+				return
+			}
+		}
+	}
 }
 
 // Has reports whether a field is populated.
@@ -103,13 +111,21 @@ func (x *fastReflection_QueryParamsRequest) Range(f func(protoreflect.FieldDescr
 // In other cases (aside from the nullable cases above),
 // a proto3 scalar field is populated if it contains a non-zero value, and
 // a repeated field is populated if it is non-empty.
-func (x *fastReflection_QueryParamsRequest) Has(fd protoreflect.FieldDescriptor) bool {
+func (x *fastReflection_MarsPacketData) Has(fd protoreflect.FieldDescriptor) bool {
 	switch fd.FullName() {
+	case "mars.mars.MarsPacketData.noData":
+		if x.Packet == nil {
+			return false
+		} else if _, ok := x.Packet.(*MarsPacketData_NoData); ok {
+			return true
+		} else {
+			return false
+		}
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: mars.mars.QueryParamsRequest"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: mars.mars.MarsPacketData"))
 		}
-		panic(fmt.Errorf("message mars.mars.QueryParamsRequest does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message mars.mars.MarsPacketData does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -119,13 +135,15 @@ func (x *fastReflection_QueryParamsRequest) Has(fd protoreflect.FieldDescriptor)
 // associated with the given field number.
 //
 // Clear is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_QueryParamsRequest) Clear(fd protoreflect.FieldDescriptor) {
+func (x *fastReflection_MarsPacketData) Clear(fd protoreflect.FieldDescriptor) {
 	switch fd.FullName() {
+	case "mars.mars.MarsPacketData.noData":
+		x.Packet = nil
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: mars.mars.QueryParamsRequest"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: mars.mars.MarsPacketData"))
 		}
-		panic(fmt.Errorf("message mars.mars.QueryParamsRequest does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message mars.mars.MarsPacketData does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -135,13 +153,21 @@ func (x *fastReflection_QueryParamsRequest) Clear(fd protoreflect.FieldDescripto
 // the default value of a bytes scalar is guaranteed to be a copy.
 // For unpopulated composite types, it returns an empty, read-only view
 // of the value; to obtain a mutable reference, use Mutable.
-func (x *fastReflection_QueryParamsRequest) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
+func (x *fastReflection_MarsPacketData) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
 	switch descriptor.FullName() {
+	case "mars.mars.MarsPacketData.noData":
+		if x.Packet == nil {
+			return protoreflect.ValueOfMessage((*NoData)(nil).ProtoReflect())
+		} else if v, ok := x.Packet.(*MarsPacketData_NoData); ok {
+			return protoreflect.ValueOfMessage(v.NoData.ProtoReflect())
+		} else {
+			return protoreflect.ValueOfMessage((*NoData)(nil).ProtoReflect())
+		}
 	default:
 		if descriptor.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: mars.mars.QueryParamsRequest"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: mars.mars.MarsPacketData"))
 		}
-		panic(fmt.Errorf("message mars.mars.QueryParamsRequest does not contain field %s", descriptor.FullName()))
+		panic(fmt.Errorf("message mars.mars.MarsPacketData does not contain field %s", descriptor.FullName()))
 	}
 }
 
@@ -155,13 +181,16 @@ func (x *fastReflection_QueryParamsRequest) Get(descriptor protoreflect.FieldDes
 // empty, read-only value, then it panics.
 //
 // Set is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_QueryParamsRequest) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
+func (x *fastReflection_MarsPacketData) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
 	switch fd.FullName() {
+	case "mars.mars.MarsPacketData.noData":
+		cv := value.Message().Interface().(*NoData)
+		x.Packet = &MarsPacketData_NoData{NoData: cv}
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: mars.mars.QueryParamsRequest"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: mars.mars.MarsPacketData"))
 		}
-		panic(fmt.Errorf("message mars.mars.QueryParamsRequest does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message mars.mars.MarsPacketData does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -175,36 +204,63 @@ func (x *fastReflection_QueryParamsRequest) Set(fd protoreflect.FieldDescriptor,
 // It panics if the field does not contain a composite type.
 //
 // Mutable is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_QueryParamsRequest) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
+func (x *fastReflection_MarsPacketData) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
 	switch fd.FullName() {
+	case "mars.mars.MarsPacketData.noData":
+		if x.Packet == nil {
+			value := &NoData{}
+			oneofValue := &MarsPacketData_NoData{NoData: value}
+			x.Packet = oneofValue
+			return protoreflect.ValueOfMessage(value.ProtoReflect())
+		}
+		switch m := x.Packet.(type) {
+		case *MarsPacketData_NoData:
+			return protoreflect.ValueOfMessage(m.NoData.ProtoReflect())
+		default:
+			value := &NoData{}
+			oneofValue := &MarsPacketData_NoData{NoData: value}
+			x.Packet = oneofValue
+			return protoreflect.ValueOfMessage(value.ProtoReflect())
+		}
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: mars.mars.QueryParamsRequest"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: mars.mars.MarsPacketData"))
 		}
-		panic(fmt.Errorf("message mars.mars.QueryParamsRequest does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message mars.mars.MarsPacketData does not contain field %s", fd.FullName()))
 	}
 }
 
 // NewField returns a new value that is assignable to the field
 // for the given descriptor. For scalars, this returns the default value.
 // For lists, maps, and messages, this returns a new, empty, mutable value.
-func (x *fastReflection_QueryParamsRequest) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
+func (x *fastReflection_MarsPacketData) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
 	switch fd.FullName() {
+	case "mars.mars.MarsPacketData.noData":
+		value := &NoData{}
+		return protoreflect.ValueOfMessage(value.ProtoReflect())
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: mars.mars.QueryParamsRequest"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: mars.mars.MarsPacketData"))
 		}
-		panic(fmt.Errorf("message mars.mars.QueryParamsRequest does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message mars.mars.MarsPacketData does not contain field %s", fd.FullName()))
 	}
 }
 
 // WhichOneof reports which field within the oneof is populated,
 // returning nil if none are populated.
 // It panics if the oneof descriptor does not belong to this message.
-func (x *fastReflection_QueryParamsRequest) WhichOneof(d protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
+func (x *fastReflection_MarsPacketData) WhichOneof(d protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
 	switch d.FullName() {
+	case "mars.mars.MarsPacketData.packet":
+		if x.Packet == nil {
+			return nil
+		}
+		switch x.Packet.(type) {
+		case *MarsPacketData_NoData:
+			return x.Descriptor().Fields().ByName("noData")
+		}
 	default:
-		panic(fmt.Errorf("%s is not a oneof field in mars.mars.QueryParamsRequest", d.FullName()))
+		panic(fmt.Errorf("%s is not a oneof field in mars.mars.MarsPacketData", d.FullName()))
 	}
 	panic("unreachable")
 }
@@ -212,7 +268,7 @@ func (x *fastReflection_QueryParamsRequest) WhichOneof(d protoreflect.OneofDescr
 // GetUnknown retrieves the entire list of unknown fields.
 // The caller may only mutate the contents of the RawFields
 // if the mutated bytes are stored back into the message with SetUnknown.
-func (x *fastReflection_QueryParamsRequest) GetUnknown() protoreflect.RawFields {
+func (x *fastReflection_MarsPacketData) GetUnknown() protoreflect.RawFields {
 	return x.unknownFields
 }
 
@@ -223,7 +279,7 @@ func (x *fastReflection_QueryParamsRequest) GetUnknown() protoreflect.RawFields 
 // An empty RawFields may be passed to clear the fields.
 //
 // SetUnknown is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_QueryParamsRequest) SetUnknown(fields protoreflect.RawFields) {
+func (x *fastReflection_MarsPacketData) SetUnknown(fields protoreflect.RawFields) {
 	x.unknownFields = fields
 }
 
@@ -235,7 +291,7 @@ func (x *fastReflection_QueryParamsRequest) SetUnknown(fields protoreflect.RawFi
 // message type, but the details are implementation dependent.
 // Validity is not part of the protobuf data model, and may not
 // be preserved in marshaling or other operations.
-func (x *fastReflection_QueryParamsRequest) IsValid() bool {
+func (x *fastReflection_MarsPacketData) IsValid() bool {
 	return x != nil
 }
 
@@ -245,9 +301,9 @@ func (x *fastReflection_QueryParamsRequest) IsValid() bool {
 // The returned methods type is identical to
 // "google.golang.org/protobuf/runtime/protoiface".Methods.
 // Consult the protoiface package documentation for details.
-func (x *fastReflection_QueryParamsRequest) ProtoMethods() *protoiface.Methods {
+func (x *fastReflection_MarsPacketData) ProtoMethods() *protoiface.Methods {
 	size := func(input protoiface.SizeInput) protoiface.SizeOutput {
-		x := input.Message.Interface().(*QueryParamsRequest)
+		x := input.Message.Interface().(*MarsPacketData)
 		if x == nil {
 			return protoiface.SizeOutput{
 				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
@@ -259,6 +315,14 @@ func (x *fastReflection_QueryParamsRequest) ProtoMethods() *protoiface.Methods {
 		var n int
 		var l int
 		_ = l
+		switch x := x.Packet.(type) {
+		case *MarsPacketData_NoData:
+			if x == nil {
+				break
+			}
+			l = options.Size(x.NoData)
+			n += 1 + l + runtime.Sov(uint64(l))
+		}
 		if x.unknownFields != nil {
 			n += len(x.unknownFields)
 		}
@@ -269,7 +333,7 @@ func (x *fastReflection_QueryParamsRequest) ProtoMethods() *protoiface.Methods {
 	}
 
 	marshal := func(input protoiface.MarshalInput) (protoiface.MarshalOutput, error) {
-		x := input.Message.Interface().(*QueryParamsRequest)
+		x := input.Message.Interface().(*MarsPacketData)
 		if x == nil {
 			return protoiface.MarshalOutput{
 				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
@@ -288,6 +352,21 @@ func (x *fastReflection_QueryParamsRequest) ProtoMethods() *protoiface.Methods {
 			i -= len(x.unknownFields)
 			copy(dAtA[i:], x.unknownFields)
 		}
+		switch x := x.Packet.(type) {
+		case *MarsPacketData_NoData:
+			encoded, err := options.Marshal(x.NoData)
+			if err != nil {
+				return protoiface.MarshalOutput{
+					NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+					Buf:               input.Buf,
+				}, err
+			}
+			i -= len(encoded)
+			copy(dAtA[i:], encoded)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(encoded)))
+			i--
+			dAtA[i] = 0xa
+		}
 		if input.Buf != nil {
 			input.Buf = append(input.Buf, dAtA...)
 		} else {
@@ -299,7 +378,7 @@ func (x *fastReflection_QueryParamsRequest) ProtoMethods() *protoiface.Methods {
 		}, nil
 	}
 	unmarshal := func(input protoiface.UnmarshalInput) (protoiface.UnmarshalOutput, error) {
-		x := input.Message.Interface().(*QueryParamsRequest)
+		x := input.Message.Interface().(*MarsPacketData)
 		if x == nil {
 			return protoiface.UnmarshalOutput{
 				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
@@ -331,12 +410,47 @@ func (x *fastReflection_QueryParamsRequest) ProtoMethods() *protoiface.Methods {
 			fieldNum := int32(wire >> 3)
 			wireType := int(wire & 0x7)
 			if wireType == 4 {
-				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: QueryParamsRequest: wiretype end group for non-group")
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: MarsPacketData: wiretype end group for non-group")
 			}
 			if fieldNum <= 0 {
-				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: QueryParamsRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: MarsPacketData: illegal tag %d (wire type %d)", fieldNum, wire)
 			}
 			switch fieldNum {
+			case 1:
+				if wireType != 2 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field NoData", wireType)
+				}
+				var msglen int
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					msglen |= int(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				if msglen < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				postIndex := iNdEx + msglen
+				if postIndex < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if postIndex > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				v := &NoData{}
+				if err := options.Unmarshal(dAtA[iNdEx:postIndex], v); err != nil {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, err
+				}
+				x.Packet = &MarsPacketData_NoData{v}
+				iNdEx = postIndex
 			default:
 				iNdEx = preIndex
 				skippy, err := runtime.Skip(dAtA[iNdEx:])
@@ -373,26 +487,24 @@ func (x *fastReflection_QueryParamsRequest) ProtoMethods() *protoiface.Methods {
 }
 
 var (
-	md_QueryParamsResponse        protoreflect.MessageDescriptor
-	fd_QueryParamsResponse_params protoreflect.FieldDescriptor
+	md_NoData protoreflect.MessageDescriptor
 )
 
 func init() {
-	file_mars_mars_query_proto_init()
-	md_QueryParamsResponse = File_mars_mars_query_proto.Messages().ByName("QueryParamsResponse")
-	fd_QueryParamsResponse_params = md_QueryParamsResponse.Fields().ByName("params")
+	file_mars_mars_packet_proto_init()
+	md_NoData = File_mars_mars_packet_proto.Messages().ByName("NoData")
 }
 
-var _ protoreflect.Message = (*fastReflection_QueryParamsResponse)(nil)
+var _ protoreflect.Message = (*fastReflection_NoData)(nil)
 
-type fastReflection_QueryParamsResponse QueryParamsResponse
+type fastReflection_NoData NoData
 
-func (x *QueryParamsResponse) ProtoReflect() protoreflect.Message {
-	return (*fastReflection_QueryParamsResponse)(x)
+func (x *NoData) ProtoReflect() protoreflect.Message {
+	return (*fastReflection_NoData)(x)
 }
 
-func (x *QueryParamsResponse) slowProtoReflect() protoreflect.Message {
-	mi := &file_mars_mars_query_proto_msgTypes[1]
+func (x *NoData) slowProtoReflect() protoreflect.Message {
+	mi := &file_mars_mars_packet_proto_msgTypes[1]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -403,43 +515,43 @@ func (x *QueryParamsResponse) slowProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-var _fastReflection_QueryParamsResponse_messageType fastReflection_QueryParamsResponse_messageType
-var _ protoreflect.MessageType = fastReflection_QueryParamsResponse_messageType{}
+var _fastReflection_NoData_messageType fastReflection_NoData_messageType
+var _ protoreflect.MessageType = fastReflection_NoData_messageType{}
 
-type fastReflection_QueryParamsResponse_messageType struct{}
+type fastReflection_NoData_messageType struct{}
 
-func (x fastReflection_QueryParamsResponse_messageType) Zero() protoreflect.Message {
-	return (*fastReflection_QueryParamsResponse)(nil)
+func (x fastReflection_NoData_messageType) Zero() protoreflect.Message {
+	return (*fastReflection_NoData)(nil)
 }
-func (x fastReflection_QueryParamsResponse_messageType) New() protoreflect.Message {
-	return new(fastReflection_QueryParamsResponse)
+func (x fastReflection_NoData_messageType) New() protoreflect.Message {
+	return new(fastReflection_NoData)
 }
-func (x fastReflection_QueryParamsResponse_messageType) Descriptor() protoreflect.MessageDescriptor {
-	return md_QueryParamsResponse
+func (x fastReflection_NoData_messageType) Descriptor() protoreflect.MessageDescriptor {
+	return md_NoData
 }
 
 // Descriptor returns message descriptor, which contains only the protobuf
 // type information for the message.
-func (x *fastReflection_QueryParamsResponse) Descriptor() protoreflect.MessageDescriptor {
-	return md_QueryParamsResponse
+func (x *fastReflection_NoData) Descriptor() protoreflect.MessageDescriptor {
+	return md_NoData
 }
 
 // Type returns the message type, which encapsulates both Go and protobuf
 // type information. If the Go type information is not needed,
 // it is recommended that the message descriptor be used instead.
-func (x *fastReflection_QueryParamsResponse) Type() protoreflect.MessageType {
-	return _fastReflection_QueryParamsResponse_messageType
+func (x *fastReflection_NoData) Type() protoreflect.MessageType {
+	return _fastReflection_NoData_messageType
 }
 
 // New returns a newly allocated and mutable empty message.
-func (x *fastReflection_QueryParamsResponse) New() protoreflect.Message {
-	return new(fastReflection_QueryParamsResponse)
+func (x *fastReflection_NoData) New() protoreflect.Message {
+	return new(fastReflection_NoData)
 }
 
 // Interface unwraps the message reflection interface and
 // returns the underlying ProtoMessage interface.
-func (x *fastReflection_QueryParamsResponse) Interface() protoreflect.ProtoMessage {
-	return (*QueryParamsResponse)(x)
+func (x *fastReflection_NoData) Interface() protoreflect.ProtoMessage {
+	return (*NoData)(x)
 }
 
 // Range iterates over every populated field in an undefined order,
@@ -447,13 +559,7 @@ func (x *fastReflection_QueryParamsResponse) Interface() protoreflect.ProtoMessa
 // Range returns immediately if f returns false.
 // While iterating, mutating operations may only be performed
 // on the current field descriptor.
-func (x *fastReflection_QueryParamsResponse) Range(f func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
-	if x.Params != nil {
-		value := protoreflect.ValueOfMessage(x.Params.ProtoReflect())
-		if !f(fd_QueryParamsResponse_params, value) {
-			return
-		}
-	}
+func (x *fastReflection_NoData) Range(f func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
 }
 
 // Has reports whether a field is populated.
@@ -467,15 +573,13 @@ func (x *fastReflection_QueryParamsResponse) Range(f func(protoreflect.FieldDesc
 // In other cases (aside from the nullable cases above),
 // a proto3 scalar field is populated if it contains a non-zero value, and
 // a repeated field is populated if it is non-empty.
-func (x *fastReflection_QueryParamsResponse) Has(fd protoreflect.FieldDescriptor) bool {
+func (x *fastReflection_NoData) Has(fd protoreflect.FieldDescriptor) bool {
 	switch fd.FullName() {
-	case "mars.mars.QueryParamsResponse.params":
-		return x.Params != nil
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: mars.mars.QueryParamsResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: mars.mars.NoData"))
 		}
-		panic(fmt.Errorf("message mars.mars.QueryParamsResponse does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message mars.mars.NoData does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -485,15 +589,13 @@ func (x *fastReflection_QueryParamsResponse) Has(fd protoreflect.FieldDescriptor
 // associated with the given field number.
 //
 // Clear is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_QueryParamsResponse) Clear(fd protoreflect.FieldDescriptor) {
+func (x *fastReflection_NoData) Clear(fd protoreflect.FieldDescriptor) {
 	switch fd.FullName() {
-	case "mars.mars.QueryParamsResponse.params":
-		x.Params = nil
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: mars.mars.QueryParamsResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: mars.mars.NoData"))
 		}
-		panic(fmt.Errorf("message mars.mars.QueryParamsResponse does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message mars.mars.NoData does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -503,16 +605,13 @@ func (x *fastReflection_QueryParamsResponse) Clear(fd protoreflect.FieldDescript
 // the default value of a bytes scalar is guaranteed to be a copy.
 // For unpopulated composite types, it returns an empty, read-only view
 // of the value; to obtain a mutable reference, use Mutable.
-func (x *fastReflection_QueryParamsResponse) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
+func (x *fastReflection_NoData) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
 	switch descriptor.FullName() {
-	case "mars.mars.QueryParamsResponse.params":
-		value := x.Params
-		return protoreflect.ValueOfMessage(value.ProtoReflect())
 	default:
 		if descriptor.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: mars.mars.QueryParamsResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: mars.mars.NoData"))
 		}
-		panic(fmt.Errorf("message mars.mars.QueryParamsResponse does not contain field %s", descriptor.FullName()))
+		panic(fmt.Errorf("message mars.mars.NoData does not contain field %s", descriptor.FullName()))
 	}
 }
 
@@ -526,15 +625,13 @@ func (x *fastReflection_QueryParamsResponse) Get(descriptor protoreflect.FieldDe
 // empty, read-only value, then it panics.
 //
 // Set is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_QueryParamsResponse) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
+func (x *fastReflection_NoData) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
 	switch fd.FullName() {
-	case "mars.mars.QueryParamsResponse.params":
-		x.Params = value.Message().Interface().(*Params)
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: mars.mars.QueryParamsResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: mars.mars.NoData"))
 		}
-		panic(fmt.Errorf("message mars.mars.QueryParamsResponse does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message mars.mars.NoData does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -548,44 +645,36 @@ func (x *fastReflection_QueryParamsResponse) Set(fd protoreflect.FieldDescriptor
 // It panics if the field does not contain a composite type.
 //
 // Mutable is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_QueryParamsResponse) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
+func (x *fastReflection_NoData) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
 	switch fd.FullName() {
-	case "mars.mars.QueryParamsResponse.params":
-		if x.Params == nil {
-			x.Params = new(Params)
-		}
-		return protoreflect.ValueOfMessage(x.Params.ProtoReflect())
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: mars.mars.QueryParamsResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: mars.mars.NoData"))
 		}
-		panic(fmt.Errorf("message mars.mars.QueryParamsResponse does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message mars.mars.NoData does not contain field %s", fd.FullName()))
 	}
 }
 
 // NewField returns a new value that is assignable to the field
 // for the given descriptor. For scalars, this returns the default value.
 // For lists, maps, and messages, this returns a new, empty, mutable value.
-func (x *fastReflection_QueryParamsResponse) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
+func (x *fastReflection_NoData) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
 	switch fd.FullName() {
-	case "mars.mars.QueryParamsResponse.params":
-		m := new(Params)
-		return protoreflect.ValueOfMessage(m.ProtoReflect())
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: mars.mars.QueryParamsResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: mars.mars.NoData"))
 		}
-		panic(fmt.Errorf("message mars.mars.QueryParamsResponse does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message mars.mars.NoData does not contain field %s", fd.FullName()))
 	}
 }
 
 // WhichOneof reports which field within the oneof is populated,
 // returning nil if none are populated.
 // It panics if the oneof descriptor does not belong to this message.
-func (x *fastReflection_QueryParamsResponse) WhichOneof(d protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
+func (x *fastReflection_NoData) WhichOneof(d protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
 	switch d.FullName() {
 	default:
-		panic(fmt.Errorf("%s is not a oneof field in mars.mars.QueryParamsResponse", d.FullName()))
+		panic(fmt.Errorf("%s is not a oneof field in mars.mars.NoData", d.FullName()))
 	}
 	panic("unreachable")
 }
@@ -593,7 +682,7 @@ func (x *fastReflection_QueryParamsResponse) WhichOneof(d protoreflect.OneofDesc
 // GetUnknown retrieves the entire list of unknown fields.
 // The caller may only mutate the contents of the RawFields
 // if the mutated bytes are stored back into the message with SetUnknown.
-func (x *fastReflection_QueryParamsResponse) GetUnknown() protoreflect.RawFields {
+func (x *fastReflection_NoData) GetUnknown() protoreflect.RawFields {
 	return x.unknownFields
 }
 
@@ -604,7 +693,7 @@ func (x *fastReflection_QueryParamsResponse) GetUnknown() protoreflect.RawFields
 // An empty RawFields may be passed to clear the fields.
 //
 // SetUnknown is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_QueryParamsResponse) SetUnknown(fields protoreflect.RawFields) {
+func (x *fastReflection_NoData) SetUnknown(fields protoreflect.RawFields) {
 	x.unknownFields = fields
 }
 
@@ -616,7 +705,7 @@ func (x *fastReflection_QueryParamsResponse) SetUnknown(fields protoreflect.RawF
 // message type, but the details are implementation dependent.
 // Validity is not part of the protobuf data model, and may not
 // be preserved in marshaling or other operations.
-func (x *fastReflection_QueryParamsResponse) IsValid() bool {
+func (x *fastReflection_NoData) IsValid() bool {
 	return x != nil
 }
 
@@ -626,9 +715,9 @@ func (x *fastReflection_QueryParamsResponse) IsValid() bool {
 // The returned methods type is identical to
 // "google.golang.org/protobuf/runtime/protoiface".Methods.
 // Consult the protoiface package documentation for details.
-func (x *fastReflection_QueryParamsResponse) ProtoMethods() *protoiface.Methods {
+func (x *fastReflection_NoData) ProtoMethods() *protoiface.Methods {
 	size := func(input protoiface.SizeInput) protoiface.SizeOutput {
-		x := input.Message.Interface().(*QueryParamsResponse)
+		x := input.Message.Interface().(*NoData)
 		if x == nil {
 			return protoiface.SizeOutput{
 				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
@@ -640,10 +729,6 @@ func (x *fastReflection_QueryParamsResponse) ProtoMethods() *protoiface.Methods 
 		var n int
 		var l int
 		_ = l
-		if x.Params != nil {
-			l = options.Size(x.Params)
-			n += 1 + l + runtime.Sov(uint64(l))
-		}
 		if x.unknownFields != nil {
 			n += len(x.unknownFields)
 		}
@@ -654,7 +739,7 @@ func (x *fastReflection_QueryParamsResponse) ProtoMethods() *protoiface.Methods 
 	}
 
 	marshal := func(input protoiface.MarshalInput) (protoiface.MarshalOutput, error) {
-		x := input.Message.Interface().(*QueryParamsResponse)
+		x := input.Message.Interface().(*NoData)
 		if x == nil {
 			return protoiface.MarshalOutput{
 				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
@@ -673,20 +758,6 @@ func (x *fastReflection_QueryParamsResponse) ProtoMethods() *protoiface.Methods 
 			i -= len(x.unknownFields)
 			copy(dAtA[i:], x.unknownFields)
 		}
-		if x.Params != nil {
-			encoded, err := options.Marshal(x.Params)
-			if err != nil {
-				return protoiface.MarshalOutput{
-					NoUnkeyedLiterals: input.NoUnkeyedLiterals,
-					Buf:               input.Buf,
-				}, err
-			}
-			i -= len(encoded)
-			copy(dAtA[i:], encoded)
-			i = runtime.EncodeVarint(dAtA, i, uint64(len(encoded)))
-			i--
-			dAtA[i] = 0xa
-		}
 		if input.Buf != nil {
 			input.Buf = append(input.Buf, dAtA...)
 		} else {
@@ -698,7 +769,7 @@ func (x *fastReflection_QueryParamsResponse) ProtoMethods() *protoiface.Methods 
 		}, nil
 	}
 	unmarshal := func(input protoiface.UnmarshalInput) (protoiface.UnmarshalOutput, error) {
-		x := input.Message.Interface().(*QueryParamsResponse)
+		x := input.Message.Interface().(*NoData)
 		if x == nil {
 			return protoiface.UnmarshalOutput{
 				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
@@ -730,48 +801,12 @@ func (x *fastReflection_QueryParamsResponse) ProtoMethods() *protoiface.Methods 
 			fieldNum := int32(wire >> 3)
 			wireType := int(wire & 0x7)
 			if wireType == 4 {
-				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: QueryParamsResponse: wiretype end group for non-group")
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: NoData: wiretype end group for non-group")
 			}
 			if fieldNum <= 0 {
-				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: QueryParamsResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: NoData: illegal tag %d (wire type %d)", fieldNum, wire)
 			}
 			switch fieldNum {
-			case 1:
-				if wireType != 2 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Params", wireType)
-				}
-				var msglen int
-				for shift := uint(0); ; shift += 7 {
-					if shift >= 64 {
-						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
-					}
-					if iNdEx >= l {
-						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
-					}
-					b := dAtA[iNdEx]
-					iNdEx++
-					msglen |= int(b&0x7F) << shift
-					if b < 0x80 {
-						break
-					}
-				}
-				if msglen < 0 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
-				}
-				postIndex := iNdEx + msglen
-				if postIndex < 0 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
-				}
-				if postIndex > l {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
-				}
-				if x.Params == nil {
-					x.Params = &Params{}
-				}
-				if err := options.Unmarshal(dAtA[iNdEx:postIndex], x.Params); err != nil {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, err
-				}
-				iNdEx = postIndex
 			default:
 				iNdEx = preIndex
 				skippy, err := runtime.Skip(dAtA[iNdEx:])
@@ -811,7 +846,7 @@ func (x *fastReflection_QueryParamsResponse) ProtoMethods() *protoiface.Methods 
 // versions:
 // 	protoc-gen-go v1.27.0
 // 	protoc        (unknown)
-// source: mars/mars/query.proto
+// source: mars/mars/packet.proto
 
 const (
 	// Verify that this generated code is sufficiently up-to-date.
@@ -820,146 +855,142 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-// QueryParamsRequest is request type for the Query/Params RPC method.
-type QueryParamsRequest struct {
+type MarsPacketData struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
+
+	// Types that are assignable to Packet:
+	//
+	//	*MarsPacketData_NoData
+	Packet isMarsPacketData_Packet `protobuf_oneof:"packet"`
 }
 
-func (x *QueryParamsRequest) Reset() {
-	*x = QueryParamsRequest{}
+func (x *MarsPacketData) Reset() {
+	*x = MarsPacketData{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_mars_mars_query_proto_msgTypes[0]
+		mi := &file_mars_mars_packet_proto_msgTypes[0]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
 }
 
-func (x *QueryParamsRequest) String() string {
+func (x *MarsPacketData) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*QueryParamsRequest) ProtoMessage() {}
+func (*MarsPacketData) ProtoMessage() {}
 
-// Deprecated: Use QueryParamsRequest.ProtoReflect.Descriptor instead.
-func (*QueryParamsRequest) Descriptor() ([]byte, []int) {
-	return file_mars_mars_query_proto_rawDescGZIP(), []int{0}
+// Deprecated: Use MarsPacketData.ProtoReflect.Descriptor instead.
+func (*MarsPacketData) Descriptor() ([]byte, []int) {
+	return file_mars_mars_packet_proto_rawDescGZIP(), []int{0}
 }
 
-// QueryParamsResponse is response type for the Query/Params RPC method.
-type QueryParamsResponse struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	// params holds all the parameters of this module.
-	Params *Params `protobuf:"bytes,1,opt,name=params,proto3" json:"params,omitempty"`
-}
-
-func (x *QueryParamsResponse) Reset() {
-	*x = QueryParamsResponse{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_mars_mars_query_proto_msgTypes[1]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *QueryParamsResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*QueryParamsResponse) ProtoMessage() {}
-
-// Deprecated: Use QueryParamsResponse.ProtoReflect.Descriptor instead.
-func (*QueryParamsResponse) Descriptor() ([]byte, []int) {
-	return file_mars_mars_query_proto_rawDescGZIP(), []int{1}
-}
-
-func (x *QueryParamsResponse) GetParams() *Params {
+func (x *MarsPacketData) GetPacket() isMarsPacketData_Packet {
 	if x != nil {
-		return x.Params
+		return x.Packet
 	}
 	return nil
 }
 
-var File_mars_mars_query_proto protoreflect.FileDescriptor
+func (x *MarsPacketData) GetNoData() *NoData {
+	if x, ok := x.GetPacket().(*MarsPacketData_NoData); ok {
+		return x.NoData
+	}
+	return nil
+}
 
-var file_mars_mars_query_proto_rawDesc = []byte{
-	0x0a, 0x15, 0x6d, 0x61, 0x72, 0x73, 0x2f, 0x6d, 0x61, 0x72, 0x73, 0x2f, 0x71, 0x75, 0x65, 0x72,
-	0x79, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x09, 0x6d, 0x61, 0x72, 0x73, 0x2e, 0x6d, 0x61,
-	0x72, 0x73, 0x1a, 0x11, 0x61, 0x6d, 0x69, 0x6e, 0x6f, 0x2f, 0x61, 0x6d, 0x69, 0x6e, 0x6f, 0x2e,
-	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x14, 0x67, 0x6f, 0x67, 0x6f, 0x70, 0x72, 0x6f, 0x74, 0x6f,
-	0x2f, 0x67, 0x6f, 0x67, 0x6f, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x1c, 0x67, 0x6f, 0x6f,
-	0x67, 0x6c, 0x65, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x61, 0x6e, 0x6e, 0x6f, 0x74, 0x61, 0x74, 0x69,
-	0x6f, 0x6e, 0x73, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x2a, 0x63, 0x6f, 0x73, 0x6d, 0x6f,
-	0x73, 0x2f, 0x62, 0x61, 0x73, 0x65, 0x2f, 0x71, 0x75, 0x65, 0x72, 0x79, 0x2f, 0x76, 0x31, 0x62,
-	0x65, 0x74, 0x61, 0x31, 0x2f, 0x70, 0x61, 0x67, 0x69, 0x6e, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x2e,
-	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x16, 0x6d, 0x61, 0x72, 0x73, 0x2f, 0x6d, 0x61, 0x72, 0x73,
-	0x2f, 0x70, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0x14, 0x0a,
-	0x12, 0x51, 0x75, 0x65, 0x72, 0x79, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x52, 0x65, 0x71, 0x75,
-	0x65, 0x73, 0x74, 0x22, 0x4b, 0x0a, 0x13, 0x51, 0x75, 0x65, 0x72, 0x79, 0x50, 0x61, 0x72, 0x61,
-	0x6d, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x34, 0x0a, 0x06, 0x70, 0x61,
-	0x72, 0x61, 0x6d, 0x73, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x11, 0x2e, 0x6d, 0x61, 0x72,
-	0x73, 0x2e, 0x6d, 0x61, 0x72, 0x73, 0x2e, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x42, 0x09, 0xc8,
-	0xde, 0x1f, 0x00, 0xa8, 0xe7, 0xb0, 0x2a, 0x01, 0x52, 0x06, 0x70, 0x61, 0x72, 0x61, 0x6d, 0x73,
-	0x32, 0x72, 0x0a, 0x05, 0x51, 0x75, 0x65, 0x72, 0x79, 0x12, 0x69, 0x0a, 0x06, 0x50, 0x61, 0x72,
-	0x61, 0x6d, 0x73, 0x12, 0x1d, 0x2e, 0x6d, 0x61, 0x72, 0x73, 0x2e, 0x6d, 0x61, 0x72, 0x73, 0x2e,
-	0x51, 0x75, 0x65, 0x72, 0x79, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65,
-	0x73, 0x74, 0x1a, 0x1e, 0x2e, 0x6d, 0x61, 0x72, 0x73, 0x2e, 0x6d, 0x61, 0x72, 0x73, 0x2e, 0x51,
-	0x75, 0x65, 0x72, 0x79, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
-	0x73, 0x65, 0x22, 0x20, 0x82, 0xd3, 0xe4, 0x93, 0x02, 0x1a, 0x12, 0x18, 0x2f, 0x69, 0x67, 0x6e,
-	0x69, 0x74, 0x65, 0x2f, 0x6d, 0x61, 0x72, 0x73, 0x2f, 0x6d, 0x61, 0x72, 0x73, 0x2f, 0x70, 0x61,
-	0x72, 0x61, 0x6d, 0x73, 0x42, 0x7c, 0x0a, 0x0d, 0x63, 0x6f, 0x6d, 0x2e, 0x6d, 0x61, 0x72, 0x73,
-	0x2e, 0x6d, 0x61, 0x72, 0x73, 0x42, 0x0a, 0x51, 0x75, 0x65, 0x72, 0x79, 0x50, 0x72, 0x6f, 0x74,
-	0x6f, 0x50, 0x01, 0x5a, 0x1a, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x73, 0x64, 0x6b, 0x2e, 0x69,
-	0x6f, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x6d, 0x61, 0x72, 0x73, 0x2f, 0x6d, 0x61, 0x72, 0x73, 0xa2,
-	0x02, 0x03, 0x4d, 0x4d, 0x58, 0xaa, 0x02, 0x09, 0x4d, 0x61, 0x72, 0x73, 0x2e, 0x4d, 0x61, 0x72,
-	0x73, 0xca, 0x02, 0x09, 0x4d, 0x61, 0x72, 0x73, 0x5c, 0x4d, 0x61, 0x72, 0x73, 0xe2, 0x02, 0x15,
-	0x4d, 0x61, 0x72, 0x73, 0x5c, 0x4d, 0x61, 0x72, 0x73, 0x5c, 0x47, 0x50, 0x42, 0x4d, 0x65, 0x74,
-	0x61, 0x64, 0x61, 0x74, 0x61, 0xea, 0x02, 0x0a, 0x4d, 0x61, 0x72, 0x73, 0x3a, 0x3a, 0x4d, 0x61,
-	0x72, 0x73, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+type isMarsPacketData_Packet interface {
+	isMarsPacketData_Packet()
+}
+
+type MarsPacketData_NoData struct {
+	NoData *NoData `protobuf:"bytes,1,opt,name=noData,proto3,oneof"`
+}
+
+func (*MarsPacketData_NoData) isMarsPacketData_Packet() {}
+
+type NoData struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *NoData) Reset() {
+	*x = NoData{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_mars_mars_packet_proto_msgTypes[1]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *NoData) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*NoData) ProtoMessage() {}
+
+// Deprecated: Use NoData.ProtoReflect.Descriptor instead.
+func (*NoData) Descriptor() ([]byte, []int) {
+	return file_mars_mars_packet_proto_rawDescGZIP(), []int{1}
+}
+
+var File_mars_mars_packet_proto protoreflect.FileDescriptor
+
+var file_mars_mars_packet_proto_rawDesc = []byte{
+	0x0a, 0x16, 0x6d, 0x61, 0x72, 0x73, 0x2f, 0x6d, 0x61, 0x72, 0x73, 0x2f, 0x70, 0x61, 0x63, 0x6b,
+	0x65, 0x74, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x09, 0x6d, 0x61, 0x72, 0x73, 0x2e, 0x6d,
+	0x61, 0x72, 0x73, 0x22, 0x47, 0x0a, 0x0e, 0x4d, 0x61, 0x72, 0x73, 0x50, 0x61, 0x63, 0x6b, 0x65,
+	0x74, 0x44, 0x61, 0x74, 0x61, 0x12, 0x2b, 0x0a, 0x06, 0x6e, 0x6f, 0x44, 0x61, 0x74, 0x61, 0x18,
+	0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x11, 0x2e, 0x6d, 0x61, 0x72, 0x73, 0x2e, 0x6d, 0x61, 0x72,
+	0x73, 0x2e, 0x4e, 0x6f, 0x44, 0x61, 0x74, 0x61, 0x48, 0x00, 0x52, 0x06, 0x6e, 0x6f, 0x44, 0x61,
+	0x74, 0x61, 0x42, 0x08, 0x0a, 0x06, 0x70, 0x61, 0x63, 0x6b, 0x65, 0x74, 0x22, 0x08, 0x0a, 0x06,
+	0x4e, 0x6f, 0x44, 0x61, 0x74, 0x61, 0x42, 0x7d, 0x0a, 0x0d, 0x63, 0x6f, 0x6d, 0x2e, 0x6d, 0x61,
+	0x72, 0x73, 0x2e, 0x6d, 0x61, 0x72, 0x73, 0x42, 0x0b, 0x50, 0x61, 0x63, 0x6b, 0x65, 0x74, 0x50,
+	0x72, 0x6f, 0x74, 0x6f, 0x50, 0x01, 0x5a, 0x1a, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x73, 0x64,
+	0x6b, 0x2e, 0x69, 0x6f, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x6d, 0x61, 0x72, 0x73, 0x2f, 0x6d, 0x61,
+	0x72, 0x73, 0xa2, 0x02, 0x03, 0x4d, 0x4d, 0x58, 0xaa, 0x02, 0x09, 0x4d, 0x61, 0x72, 0x73, 0x2e,
+	0x4d, 0x61, 0x72, 0x73, 0xca, 0x02, 0x09, 0x4d, 0x61, 0x72, 0x73, 0x5c, 0x4d, 0x61, 0x72, 0x73,
+	0xe2, 0x02, 0x15, 0x4d, 0x61, 0x72, 0x73, 0x5c, 0x4d, 0x61, 0x72, 0x73, 0x5c, 0x47, 0x50, 0x42,
+	0x4d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0xea, 0x02, 0x0a, 0x4d, 0x61, 0x72, 0x73, 0x3a,
+	0x3a, 0x4d, 0x61, 0x72, 0x73, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
-	file_mars_mars_query_proto_rawDescOnce sync.Once
-	file_mars_mars_query_proto_rawDescData = file_mars_mars_query_proto_rawDesc
+	file_mars_mars_packet_proto_rawDescOnce sync.Once
+	file_mars_mars_packet_proto_rawDescData = file_mars_mars_packet_proto_rawDesc
 )
 
-func file_mars_mars_query_proto_rawDescGZIP() []byte {
-	file_mars_mars_query_proto_rawDescOnce.Do(func() {
-		file_mars_mars_query_proto_rawDescData = protoimpl.X.CompressGZIP(file_mars_mars_query_proto_rawDescData)
+func file_mars_mars_packet_proto_rawDescGZIP() []byte {
+	file_mars_mars_packet_proto_rawDescOnce.Do(func() {
+		file_mars_mars_packet_proto_rawDescData = protoimpl.X.CompressGZIP(file_mars_mars_packet_proto_rawDescData)
 	})
-	return file_mars_mars_query_proto_rawDescData
+	return file_mars_mars_packet_proto_rawDescData
 }
 
-var file_mars_mars_query_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
-var file_mars_mars_query_proto_goTypes = []interface{}{
-	(*QueryParamsRequest)(nil),  // 0: mars.mars.QueryParamsRequest
-	(*QueryParamsResponse)(nil), // 1: mars.mars.QueryParamsResponse
-	(*Params)(nil),              // 2: mars.mars.Params
+var file_mars_mars_packet_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
+var file_mars_mars_packet_proto_goTypes = []interface{}{
+	(*MarsPacketData)(nil), // 0: mars.mars.MarsPacketData
+	(*NoData)(nil),         // 1: mars.mars.NoData
 }
-var file_mars_mars_query_proto_depIdxs = []int32{
-	2, // 0: mars.mars.QueryParamsResponse.params:type_name -> mars.mars.Params
-	0, // 1: mars.mars.Query.Params:input_type -> mars.mars.QueryParamsRequest
-	1, // 2: mars.mars.Query.Params:output_type -> mars.mars.QueryParamsResponse
-	2, // [2:3] is the sub-list for method output_type
-	1, // [1:2] is the sub-list for method input_type
+var file_mars_mars_packet_proto_depIdxs = []int32{
+	1, // 0: mars.mars.MarsPacketData.noData:type_name -> mars.mars.NoData
+	1, // [1:1] is the sub-list for method output_type
+	1, // [1:1] is the sub-list for method input_type
 	1, // [1:1] is the sub-list for extension type_name
 	1, // [1:1] is the sub-list for extension extendee
 	0, // [0:1] is the sub-list for field type_name
 }
 
-func init() { file_mars_mars_query_proto_init() }
-func file_mars_mars_query_proto_init() {
-	if File_mars_mars_query_proto != nil {
+func init() { file_mars_mars_packet_proto_init() }
+func file_mars_mars_packet_proto_init() {
+	if File_mars_mars_packet_proto != nil {
 		return
 	}
-	file_mars_mars_params_proto_init()
 	if !protoimpl.UnsafeEnabled {
-		file_mars_mars_query_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*QueryParamsRequest); i {
+		file_mars_mars_packet_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*MarsPacketData); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -970,8 +1001,8 @@ func file_mars_mars_query_proto_init() {
 				return nil
 			}
 		}
-		file_mars_mars_query_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*QueryParamsResponse); i {
+		file_mars_mars_packet_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*NoData); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -982,23 +1013,26 @@ func file_mars_mars_query_proto_init() {
 				return nil
 			}
 		}
+	}
+	file_mars_mars_packet_proto_msgTypes[0].OneofWrappers = []interface{}{
+		(*MarsPacketData_NoData)(nil),
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: file_mars_mars_query_proto_rawDesc,
+			RawDescriptor: file_mars_mars_packet_proto_rawDesc,
 			NumEnums:      0,
 			NumMessages:   2,
 			NumExtensions: 0,
-			NumServices:   1,
+			NumServices:   0,
 		},
-		GoTypes:           file_mars_mars_query_proto_goTypes,
-		DependencyIndexes: file_mars_mars_query_proto_depIdxs,
-		MessageInfos:      file_mars_mars_query_proto_msgTypes,
+		GoTypes:           file_mars_mars_packet_proto_goTypes,
+		DependencyIndexes: file_mars_mars_packet_proto_depIdxs,
+		MessageInfos:      file_mars_mars_packet_proto_msgTypes,
 	}.Build()
-	File_mars_mars_query_proto = out.File
-	file_mars_mars_query_proto_rawDesc = nil
-	file_mars_mars_query_proto_goTypes = nil
-	file_mars_mars_query_proto_depIdxs = nil
+	File_mars_mars_packet_proto = out.File
+	file_mars_mars_packet_proto_rawDesc = nil
+	file_mars_mars_packet_proto_goTypes = nil
+	file_mars_mars_packet_proto_depIdxs = nil
 }

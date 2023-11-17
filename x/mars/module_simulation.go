@@ -3,23 +3,23 @@ package mars
 import (
 	"math/rand"
 
+	"github.com/Pantani/mars/testutil/sample"
+	marssimulation "github.com/Pantani/mars/x/mars/simulation"
+	"github.com/Pantani/mars/x/mars/types"
+	"github.com/cosmos/cosmos-sdk/baseapp"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/types/module"
 	simtypes "github.com/cosmos/cosmos-sdk/types/simulation"
 	"github.com/cosmos/cosmos-sdk/x/simulation"
-
-	"github.com/ignite/mars/testutil/sample"
-	marssimulation "github.com/ignite/mars/x/mars/simulation"
-	"github.com/ignite/mars/x/mars/types"
 )
 
 // avoid unused import issue
 var (
-	_ = marssimulation.FindAccount
-	_ = rand.Rand{}
 	_ = sample.AccAddress
-	_ = sdk.AccAddress{}
+	_ = marssimulation.FindAccount
 	_ = simulation.MsgEntryKind
+	_ = baseapp.Paramspace
+	_ = rand.Rand{}
 )
 
 const (
@@ -34,14 +34,13 @@ func (AppModule) GenerateGenesisState(simState *module.SimulationState) {
 	}
 	marsGenesis := types.GenesisState{
 		Params: types.DefaultParams(),
-		PortId: types.PortID,
 		// this line is used by starport scaffolding # simapp/module/genesisState
 	}
 	simState.GenState[types.ModuleName] = simState.Cdc.MustMarshalJSON(&marsGenesis)
 }
 
 // RegisterStoreDecoder registers a decoder.
-func (am AppModule) RegisterStoreDecoder(_ simtypes.StoreDecoderRegistry) {}
+func (am AppModule) RegisterStoreDecoder(_ sdk.StoreDecoderRegistry) {}
 
 // ProposalContents doesn't return any content functions for governance proposals.
 func (AppModule) ProposalContents(_ module.SimulationState) []simtypes.WeightedProposalContent {

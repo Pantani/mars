@@ -2,11 +2,20 @@ package types
 
 import (
 	"github.com/cosmos/cosmos-sdk/codec"
+	"github.com/cosmos/cosmos-sdk/codec/legacy"
 	cdctypes "github.com/cosmos/cosmos-sdk/codec/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/types/msgservice"
 	// this line is used by starport scaffolding # 1
 )
+
+// RegisterLegacyAminoCodec registers concrete types on the LegacyAmino codec
+func RegisterLegacyAminoCodec(cdc *codec.LegacyAmino) {
+	// this line is used by starport scaffolding # 2
+
+	cdc.RegisterConcrete(Params{}, "mars/x/mars/Params", nil)
+	legacy.RegisterAminoMsg(cdc, &MsgUpdateParams{}, "mars/x/mars/MsgUpdateParams")
+}
 
 func RegisterInterfaces(registry cdctypes.InterfaceRegistry) {
 	// this line is used by starport scaffolding # 3
@@ -18,10 +27,6 @@ func RegisterInterfaces(registry cdctypes.InterfaceRegistry) {
 }
 
 var (
-	// ModuleCdc references the global x/ibc-transfer module codec. Note, the codec
-	// should ONLY be used in certain instances of tests and for JSON encoding.
-	//
-	// The actual codec used for serialization should be provided to x/ibc transfer and
-	// defined at the application level.
+	Amino     = codec.NewLegacyAmino()
 	ModuleCdc = codec.NewProtoCodec(cdctypes.NewInterfaceRegistry())
 )

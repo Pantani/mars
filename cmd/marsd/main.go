@@ -1,19 +1,24 @@
 package main
 
 import (
-	"fmt"
 	"os"
 
+	"github.com/cosmos/cosmos-sdk/server"
 	svrcmd "github.com/cosmos/cosmos-sdk/server/cmd"
 
-	"github.com/ignite/mars/app"
-	"github.com/ignite/mars/cmd/marsd/cmd"
+	"github.com/Pantani/mars/app"
+	"github.com/Pantani/mars/cmd/marsd/cmd"
 )
 
 func main() {
-	rootCmd := cmd.NewRootCmd()
+	rootCmd, _ := cmd.NewRootCmd()
 	if err := svrcmd.Execute(rootCmd, "", app.DefaultNodeHome); err != nil {
-		fmt.Fprintln(rootCmd.OutOrStderr(), err)
-		os.Exit(1)
+		switch e := err.(type) {
+		case server.ErrorCode:
+			os.Exit(e.Code)
+
+		default:
+			os.Exit(1)
+		}
 	}
 }

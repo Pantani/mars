@@ -3,17 +3,17 @@ package mars_test
 import (
 	"testing"
 
-	keepertest "github.com/ignite/mars/testutil/keeper"
-	"github.com/ignite/mars/testutil/nullify"
-	"github.com/ignite/mars/x/mars/module"
-	"github.com/ignite/mars/x/mars/types"
+	keepertest "github.com/Pantani/mars/testutil/keeper"
+	"github.com/Pantani/mars/testutil/nullify"
+	"github.com/Pantani/mars/x/mars"
+	"github.com/Pantani/mars/x/mars/types"
 	"github.com/stretchr/testify/require"
 )
 
 func TestGenesis(t *testing.T) {
 	genesisState := types.GenesisState{
 		Params: types.DefaultParams(),
-		PortId: types.PortID,
+
 		// this line is used by starport scaffolding # genesis/test/state
 	}
 
@@ -24,8 +24,6 @@ func TestGenesis(t *testing.T) {
 
 	nullify.Fill(&genesisState)
 	nullify.Fill(got)
-
-	require.Equal(t, genesisState.PortId, got.PortId)
 
 	// this line is used by starport scaffolding # genesis/test/assert
 }

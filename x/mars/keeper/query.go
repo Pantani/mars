@@ -1,7 +1,7 @@
 package keeper
 
 import (
-	"github.com/ignite/mars/x/mars/types"
+	"github.com/Pantani/mars/x/mars/types"
 )
 
 var _ types.QueryServer = Keeper{}

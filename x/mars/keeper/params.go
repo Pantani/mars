@@ -1,16 +1,14 @@
 package keeper
 
 import (
-	"context"
+	sdk "github.com/cosmos/cosmos-sdk/types"
 
-	"github.com/cosmos/cosmos-sdk/runtime"
-
-	"github.com/ignite/mars/x/mars/types"
+	"github.com/Pantani/mars/x/mars/types"
 )
 
 // GetParams get all parameters as types.Params
-func (k Keeper) GetParams(ctx context.Context) (params types.Params) {
-	store := runtime.KVStoreAdapter(k.storeService.OpenKVStore(ctx))
+func (k Keeper) GetParams(ctx sdk.Context) (params types.Params) {
+	store := ctx.KVStore(k.storeKey)
 	bz := store.Get(types.ParamsKey)
 	if bz == nil {
 		return params
@@ -21,8 +19,8 @@ func (k Keeper) GetParams(ctx context.Context) (params types.Params) {
 }
 
 // SetParams set the params
-func (k Keeper) SetParams(ctx context.Context, params types.Params) error {
-	store := runtime.KVStoreAdapter(k.storeService.OpenKVStore(ctx))
+func (k Keeper) SetParams(ctx sdk.Context, params types.Params) error {
+	store := ctx.KVStore(k.storeKey)
 	bz, err := k.cdc.Marshal(&params)
 	if err != nil {
 		return err

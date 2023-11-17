@@ -1,17 +1,17 @@
 package keeper_test
 
 import (
-	"context"
 	"testing"
 
+	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/stretchr/testify/require"
 
-	keepertest "github.com/ignite/mars/testutil/keeper"
-	"github.com/ignite/mars/x/mars/keeper"
-	"github.com/ignite/mars/x/mars/types"
+	keepertest "github.com/Pantani/mars/testutil/keeper"
+	"github.com/Pantani/mars/x/mars/keeper"
+	"github.com/Pantani/mars/x/mars/types"
 )
 
-func setupMsgServer(t testing.TB) (keeper.Keeper, types.MsgServer, context.Context) {
+func setupMsgServer(t testing.TB) (keeper.Keeper, types.MsgServer, sdk.Context) {
 	k, ctx := keepertest.MarsKeeper(t)
 	return k, keeper.NewMsgServerImpl(k), ctx
 }

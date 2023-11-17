@@ -10,11 +10,11 @@ import (
 	// "github.com/cosmos/cosmos-sdk/client/flags"
 	// sdk "github.com/cosmos/cosmos-sdk/types"
 
-	"github.com/ignite/mars/x/mars/types"
+	"github.com/Pantani/mars/x/mars/types"
 )
 
 // GetQueryCmd returns the cli query commands for this module
-func GetQueryCmd() *cobra.Command {
+func GetQueryCmd(queryRoute string) *cobra.Command {
 	// Group mars queries under a subcommand
 	cmd := &cobra.Command{
 		Use:                        types.ModuleName,

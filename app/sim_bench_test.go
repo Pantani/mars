@@ -5,7 +5,7 @@ import (
 	"os"
 	"testing"
 
-	cmtproto "github.com/cometbft/cometbft/proto/tendermint/types"
+	tmproto "github.com/cometbft/cometbft/proto/tendermint/types"
 	"github.com/cosmos/cosmos-sdk/client/flags"
 	"github.com/cosmos/cosmos-sdk/server"
 	simtestutil "github.com/cosmos/cosmos-sdk/testutil/sims"
@@ -14,7 +14,7 @@ import (
 	simcli "github.com/cosmos/cosmos-sdk/x/simulation/client/cli"
 	"github.com/stretchr/testify/require"
 
-	"github.com/ignite/mars/app"
+	"github.com/Pantani/mars/app"
 )
 
 // Profile with:
@@ -43,8 +43,7 @@ func BenchmarkFullAppSimulation(b *testing.B) {
 	appOptions[flags.FlagHome] = app.DefaultNodeHome
 	appOptions[server.FlagInvCheckPeriod] = simcli.FlagPeriodValue
 
-	bApp, err := app.New(logger, db, nil, true, appOptions, interBlockCacheOpt())
-	require.NoError(b, err)
+	bApp := app.New(logger, db, nil, true, appOptions, interBlockCacheOpt())
 	require.Equal(b, app.Name, bApp.Name())
 
 	// run randomized simulation
@@ -100,8 +99,7 @@ func BenchmarkInvariants(b *testing.B) {
 	appOptions[flags.FlagHome] = app.DefaultNodeHome
 	appOptions[server.FlagInvCheckPeriod] = simcli.FlagPeriodValue
 
-	bApp, err := app.New(logger, db, nil, true, appOptions, interBlockCacheOpt())
-	require.NoError(b, err)
+	bApp := app.New(logger, db, nil, true, appOptions, interBlockCacheOpt())
 	require.Equal(b, app.Name, bApp.Name())
 
 	// run randomized simulation
@@ -130,7 +128,7 @@ func BenchmarkInvariants(b *testing.B) {
 		simtestutil.PrintStats(db)
 	}
 
-	ctx := bApp.NewContextLegacy(true, cmtproto.Header{Height: bApp.LastBlockHeight() + 1})
+	ctx := bApp.NewContext(true, tmproto.Header{Height: bApp.LastBlockHeight() + 1})
 
 	// 3. Benchmark each invariant separately
 	//

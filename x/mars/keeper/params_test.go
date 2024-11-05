@@ -5,8 +5,8 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	keepertest "github.com/Pantani/mars/testutil/keeper"
-	"github.com/Pantani/mars/x/mars/types"
+	keepertest "mars/testutil/keeper"
+	"mars/x/mars/types"
 )
 
 func TestGetParams(t *testing.T) {

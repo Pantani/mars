@@ -3,10 +3,11 @@ package mars_test
 import (
 	"testing"
 
-	keepertest "github.com/Pantani/mars/testutil/keeper"
-	"github.com/Pantani/mars/testutil/nullify"
-	"github.com/Pantani/mars/x/mars"
-	"github.com/Pantani/mars/x/mars/types"
+	keepertest "mars/testutil/keeper"
+	"mars/testutil/nullify"
+	mars "mars/x/mars/module"
+	"mars/x/mars/types"
+
 	"github.com/stretchr/testify/require"
 )
 
